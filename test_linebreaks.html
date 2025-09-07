@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test WhatsApp Line Breaks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        button {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .message-preview {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            white-space: pre-line;
+            font-family: monospace;
+            border: 1px solid #ddd;
+        }
+        .url-preview {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            word-break: break-all;
+            font-size: 12px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test WhatsApp Line Break Issues</h1>
+    
+    <div class="test-section">
+        <h2>Current Message (with multiple line breaks)</h2>
+        <div class="message-preview" id="currentMessage"></div>
+        <div class="url-preview" id="currentURL"></div>
+        <button onclick="testCurrentMessage()">Test Current Message</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Fixed Message (single line breaks only)</h2>
+        <div class="message-preview" id="fixedMessage"></div>
+        <div class="url-preview" id="fixedURL"></div>
+        <button onclick="testFixedMessage()">Test Fixed Message</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Alternative: Space-separated message</h2>
+        <div class="message-preview" id="spaceMessage"></div>
+        <div class="url-preview" id="spaceURL"></div>
+        <button onclick="testSpaceMessage()">Test Space Message</button>
+    </div>
+
+    <script>
+        const guestName = "João Silva";
+        
+        // Current message with multiple line breaks
+        const currentMessage = `Ola! Eu gostaria de confirmar minha presenca no casamento.
+
+Nome: ${guestName}
+Status: Confirmado
+
+Muito obrigado(a) pelo convite! Estou ansioso(a) para celebrar este momento especial com voces!
+
+Mensagem enviada atraves do convite digital`;
+
+        // Fixed message with single line breaks
+        const fixedMessage = `Ola! Eu gostaria de confirmar minha presenca no casamento.
+Nome: ${guestName}
+Status: Confirmado
+Muito obrigado(a) pelo convite! Estou ansioso(a) para celebrar este momento especial com voces!
+Mensagem enviada atraves do convite digital`;
+
+        // Alternative with spaces instead of line breaks
+        const spaceMessage = `Ola! Eu gostaria de confirmar minha presenca no casamento. Nome: ${guestName}. Status: Confirmado. Muito obrigado(a) pelo convite! Estou ansioso(a) para celebrar este momento especial com voces! Mensagem enviada atraves do convite digital`;
+
+        // Display messages
+        document.getElementById('currentMessage').textContent = currentMessage;
+        document.getElementById('fixedMessage').textContent = fixedMessage;
+        document.getElementById('spaceMessage').textContent = spaceMessage;
+
+        function testCurrentMessage() {
+            const encodedMessage = encodeURIComponent(currentMessage);
+            const whatsappNumber = '554896338116';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            document.getElementById('currentURL').textContent = whatsappURL;
+            console.log('Current URL:', whatsappURL);
+            window.open(whatsappURL, '_blank');
+        }
+
+        function testFixedMessage() {
+            const encodedMessage = encodeURIComponent(fixedMessage);
+            const whatsappNumber = '554896338116';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            document.getElementById('fixedURL').textContent = whatsappURL;
+            console.log('Fixed URL:', whatsappURL);
+            window.open(whatsappURL, '_blank');
+        }
+
+        function testSpaceMessage() {
+            const encodedMessage = encodeURIComponent(spaceMessage);
+            const whatsappNumber = '554896338116';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            document.getElementById('spaceURL').textContent = whatsappURL;
+            console.log('Space URL:', whatsappURL);
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Display URLs on page load
+        window.onload = function() {
+            testCurrentMessage();
+            testFixedMessage();
+            testSpaceMessage();
+        }
+    </script>
+</body>
+</html>

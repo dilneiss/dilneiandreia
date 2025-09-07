@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test WhatsApp Message</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        button {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .message-preview {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            white-space: pre-line;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test WhatsApp Message Functionality</h1>
+    
+    <div class="test-section">
+        <h2>Current Message (with issues)</h2>
+        <div class="message-preview" id="currentMessage"></div>
+        <button onclick="testCurrentMessage()">Test Current Message</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Fixed Message (simplified)</h2>
+        <div class="message-preview" id="fixedMessage"></div>
+        <button onclick="testFixedMessage()">Test Fixed Message</button>
+    </div>
+
+    <script>
+        const guestName = "João Silva";
+        
+        // Current problematic message
+        const currentMessage = `Olá! Eu gostaria de confirmar minha presença no casamento.
+
+*Nome:* ${guestName}
+*Status:* Confirmado ✅
+
+Muito obrigado(a) pelo convite! Estou ansioso(a) para celebrar este momento especial com vocês! 💕
+
+_Mensagem enviada através do convite digital_`;
+
+        // Fixed message without special characters
+        const fixedMessage = `Ola! Eu gostaria de confirmar minha presenca no casamento.
+
+Nome: ${guestName}
+Status: Confirmado
+
+Muito obrigado(a) pelo convite! Estou ansioso(a) para celebrar este momento especial com voces!
+
+Mensagem enviada atraves do convite digital`;
+
+        document.getElementById('currentMessage').textContent = currentMessage;
+        document.getElementById('fixedMessage').textContent = fixedMessage;
+
+        function testCurrentMessage() {
+            const encodedMessage = encodeURIComponent(currentMessage);
+            const whatsappNumber = '554896338116';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            console.log('Current URL:', whatsappURL);
+            window.open(whatsappURL, '_blank');
+        }
+
+        function testFixedMessage() {
+            const encodedMessage = encodeURIComponent(fixedMessage);
+            const whatsappNumber = '554896338116';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            console.log('Fixed URL:', whatsappURL);
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>

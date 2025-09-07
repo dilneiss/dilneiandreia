@@ -1,0 +1,1165 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Coral/Salmon Color Variables */
+:root {
+    --coral-primary: #ff6b6b;
+    --coral-secondary: #ee5a52;
+    --coral-light: #ff8e8e;
+    --salmon-pink: #ff9999;
+    --cream-white: #fdf8f3;
+    --golden-yellow: #ffd700;
+    --golden-dark: #b8860b;
+    --soft-white: #ffffff;
+    --text-dark: #2c2c2c;
+    --text-light: #666666;
+    --rose-pink: #d63384;
+    --rose-red: #dc3545;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                url('fotos/IMG_9262-Editar.jpg') center center/cover;
+    background-position: center center;
+    background-attachment: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+/* Desktop Hero Image */
+@media (min-width: 769px) {
+    .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                    url('fotos/IMG_9506-Editar.jpg') center center/cover;
+        background-position: center center;
+        background-attachment: fixed;
+    }
+}
+
+.hero-overlay {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content {
+    color: white;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+.couple-names {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.wedding-date {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    margin-top: 3rem;
+}
+
+.scroll-indicator i {
+    font-size: 2rem;
+    color: white;
+    opacity: 0.8;
+}
+
+/* Main Content */
+.main-content {
+    background: #fefefe;
+}
+
+/* Section Titles */
+.section-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #8b4f7f;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #d4a574, #8b4f7f);
+    margin: 1rem auto;
+    border-radius: 2px;
+}
+
+/* Story Section */
+.story-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f8f4f0 0%, #fff 50%, #f8f4f0 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Story Message */
+.story-message {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.story-message p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+/* Scattered Photos Throughout Website */
+.scattered-photo-1,
+.scattered-photo-2,
+.scattered-photo-3,
+.scattered-photo-4 {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.floating-photo {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    image-rendering: high-quality;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    filter: contrast(1.02) saturate(1.05) brightness(1.01);
+    will-change: transform;
+    opacity: 0.8;
+    backface-visibility: hidden;
+}
+
+/* Round Shape Effects for Photos */
+.scattered-photo-1 .floating-photo,
+.scattered-photo-2 .floating-photo,
+.scattered-photo-3 .floating-photo,
+.scattered-photo-4 .floating-photo {
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    clip-path: none;
+}
+
+.floating-photo:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Individual Photo Positioning - Contained within sections only */
+.scattered-photo-1 {
+    top: 40%;
+    left: 5%;
+    transform: rotate(-8deg);
+    animation: floatAnimation1 6s ease-in-out infinite;
+}
+
+.scattered-photo-2 {
+    top: 60%;
+    right: 8%;
+    transform: rotate(5deg);
+    animation: floatAnimation2 6s ease-in-out infinite 1s;
+}
+
+.scattered-photo-3 {
+    top: 180%;
+    right: 3%;
+    transform: rotate(-3deg);
+    animation: floatAnimation3 6s ease-in-out infinite 2s;
+}
+
+.scattered-photo-4 {
+    top: 195%;
+    left: 2%;
+    transform: rotate(7deg);
+    animation: floatAnimation4 6s ease-in-out infinite 3s;
+}
+
+/* Float Animations for Scattered Photos */
+@keyframes floatAnimation1 {
+    0%, 100% { transform: rotate(-8deg) translateY(0px); }
+    50% { transform: rotate(-8deg) translateY(-10px); }
+}
+
+@keyframes floatAnimation2 {
+    0%, 100% { transform: rotate(5deg) translateY(0px); }
+    50% { transform: rotate(5deg) translateY(-12px); }
+}
+
+@keyframes floatAnimation3 {
+    0%, 100% { transform: rotate(-3deg) translateY(0px); }
+    50% { transform: rotate(-3deg) translateY(-8px); }
+}
+
+@keyframes floatAnimation4 {
+    0%, 100% { transform: rotate(7deg) translateY(0px); }
+    50% { transform: rotate(7deg) translateY(-15px); }
+}
+
+/* Scattered Gallery Layout */
+.scattered-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    position: relative;
+}
+
+.photo-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    animation: photoFloat 4s ease-in-out infinite;
+}
+
+.photo-item:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.scattered-photo {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    image-rendering: high-quality;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    filter: contrast(1.02) saturate(1.05) brightness(1.01);
+    will-change: transform;
+}
+
+.photo-item:hover .scattered-photo {
+    transform: scale(1.1);
+}
+
+/* Individual photo positioning for scattered effect */
+.photo-1 {
+    transform: rotate(-2deg);
+    animation: photoFloat1 4s ease-in-out infinite;
+}
+
+.photo-2 {
+    transform: rotate(1.5deg);
+    animation: photoFloat2 4s ease-in-out infinite 0.5s;
+}
+
+.photo-3 {
+    transform: rotate(-1deg);
+    animation: photoFloat3 4s ease-in-out infinite 1s;
+}
+
+.photo-4 {
+    transform: rotate(2deg);
+    animation: photoFloat4 4s ease-in-out infinite 1.5s;
+}
+
+.photo-5 {
+    transform: rotate(-1.5deg);
+    animation: photoFloat5 4s ease-in-out infinite 2s;
+}
+
+.photo-6 {
+    transform: rotate(1deg);
+    animation: photoFloat6 4s ease-in-out infinite 2.5s;
+}
+
+@keyframes photoFloat1 {
+    0%, 100% { transform: translateY(0px) rotate(-2deg); }
+    50% { transform: translateY(-8px) rotate(-2deg); }
+}
+
+@keyframes photoFloat2 {
+    0%, 100% { transform: translateY(0px) rotate(1.5deg); }
+    50% { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+@keyframes photoFloat3 {
+    0%, 100% { transform: translateY(0px) rotate(-1deg); }
+    50% { transform: translateY(-8px) rotate(-1deg); }
+}
+
+@keyframes photoFloat4 {
+    0%, 100% { transform: translateY(0px) rotate(2deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+@keyframes photoFloat5 {
+    0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
+    50% { transform: translateY(-8px) rotate(-1.5deg); }
+}
+
+@keyframes photoFloat6 {
+    0%, 100% { transform: translateY(0px) rotate(1deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+/* Invitation Section */
+.invitation-section {
+    padding: 5rem 0;
+    background: #fff;
+}
+
+.invitation-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #fff 0%, #f9f7f4 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(139, 79, 127, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.invitation-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+.invitation-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.invitation-header h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #8b4f7f;
+}
+
+.invitation-header i {
+    font-size: 1.5rem;
+    color: #d4a574;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.invitation-content {
+    position: relative;
+    z-index: 1;
+}
+
+.invitation-text {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.dress-code {
+    background: rgba(139, 79, 127, 0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dress-code i {
+    font-size: 1.5rem;
+    color: #8b4f7f;
+}
+
+.dress-code p {
+    margin: 0;
+    color: #555;
+}
+
+/* RSVP Section */
+.rsvp-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #8b4f7f 0%, #b8738a 100%);
+}
+
+.rsvp-section .section-title {
+    color: white;
+}
+
+.rsvp-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.rsvp-description {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #8b4f7f;
+}
+
+.confirm-btn {
+    background: linear-gradient(135deg, #25D366 0%, #20BA5A 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+}
+
+.confirm-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+}
+
+.confirm-btn i {
+    font-size: 1.2rem;
+}
+
+.rsvp-note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Links Section */
+.links-section {
+    padding: 5rem 0;
+    background: #f8f4f0;
+}
+
+.links-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.link-card {
+    flex: 1;
+    min-width: 200px;
+    max-width: 280px;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.link-card:hover {
+    transform: translateY(-5px);
+}
+
+.link-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #8b4f7f, #d4a574);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+.link-card h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #8b4f7f;
+}
+
+.link-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.location-btn,
+.gifts-btn,
+.rsvp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #8b4f7f, #b8738a);
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.location-btn:hover,
+.gifts-btn:hover,
+.rsvp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(139, 79, 127, 0.3);
+}
+
+/* Footer */
+.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.footer i {
+    color: #d4a574;
+    margin: 0 0.5rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #8b4f7f;
+}
+
+/* RSVP Modal Styling */
+.rsvp-modal-content {
+    max-width: 800px;
+    width: 95%;
+    margin: 2% auto;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff 0%, #f9f7f4 100%);
+}
+
+.rsvp-photo {
+    flex: 1;
+    min-width: 300px;
+}
+
+.rsvp-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.rsvp-message {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rsvp-message h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #8b4f7f;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.rsvp-message p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.dress-code-info {
+    background: rgba(139, 79, 127, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.dress-code-info i {
+    font-size: 1.5rem;
+    color: #8b4f7f;
+}
+
+.dress-code-info p {
+    margin: 0;
+    color: #555;
+}
+
+/* Ceremony Modal Styling */
+.ceremony-modal-content {
+    max-width: 800px;
+    width: 95%;
+    margin: 2% auto;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff 0%, #f9f7f4 100%);
+}
+
+.ceremony-photo {
+    flex: 1;
+    min-width: 300px;
+}
+
+.ceremony-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.ceremony-message {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ceremony-message h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #8b4f7f;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.ceremony-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.ceremony-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(139, 79, 127, 0.1);
+    border-radius: 10px;
+}
+
+.ceremony-detail i {
+    font-size: 1.5rem;
+    color: #8b4f7f;
+    margin-top: 0.2rem;
+}
+
+.ceremony-detail strong {
+    display: block;
+    color: #8b4f7f;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.ceremony-detail p {
+    margin: 0;
+    color: #555;
+    line-height: 1.4;
+}
+
+.ceremony-location-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #8b4f7f 0%, #a05d8a 100%);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 79, 127, 0.3);
+    align-self: center;
+}
+
+.ceremony-location-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 79, 127, 0.4);
+    background: linear-gradient(135deg, #a05d8a 0%, #8b4f7f 100%);
+}
+
+.ceremony-location-btn i {
+    font-size: 1rem;
+}
+
+/* Mobile responsive for ceremony modal */
+@media (max-width: 768px) {
+    .ceremony-modal-content {
+        flex-direction: column;
+        margin: 5% auto;
+        width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .ceremony-photo {
+        min-width: auto;
+        order: 1;
+    }
+    
+    .ceremony-image {
+        height: 250px;
+    }
+    
+    .ceremony-message {
+        order: 2;
+    }
+    
+    .ceremony-message h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .ceremony-detail {
+        flex-direction: row;
+        text-align: left;
+    }
+    
+    .ceremony-detail i {
+        font-size: 1.2rem;
+    }
+}
+
+/* Mobile responsive for RSVP modal */
+@media (max-width: 768px) {
+    .rsvp-modal-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin: 5% auto;
+    }
+    
+    .rsvp-photo {
+        min-width: auto;
+    }
+    
+    .rsvp-image {
+        height: 250px;
+    }
+    
+    .rsvp-message h3 {
+        font-size: 2rem;
+    }
+}
+
+/* Animations */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Envelope Responsive Design */
+@media (max-width: 768px) {
+    .envelope {
+        width: 320px;
+        height: 220px;
+    }
+    
+    .initial-a, .initial-d {
+        font-size: 3rem;
+    }
+    
+    .ampersand {
+        font-size: 2rem;
+    }
+    
+    .envelope-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .envelope-front {
+        padding: 1.5rem;
+    }
+    
+    .leaf {
+        width: 15px;
+        height: 22px;
+    }
+    
+    .petal {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .envelope {
+        width: 280px;
+        height: 200px;
+    }
+    
+    .initial-a, .initial-d {
+        font-size: 2.5rem;
+    }
+    
+    .ampersand {
+        font-size: 1.8rem;
+    }
+    
+    .envelope-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .initials {
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .envelope-front {
+        padding: 1rem;
+    }
+    
+    .leaf {
+        width: 12px;
+        height: 18px;
+    }
+    
+    .leaf::after {
+        width: 1px;
+        height: 10px;
+    }
+}
+
+
+
+/* Mobile Scattered Photos Fix */
+@media (max-width: 768px) {
+    /* Fix floating photos to occupy space instead of overlapping text */
+    .scattered-photo-1,
+    .scattered-photo-2,
+    .scattered-photo-3,
+    .scattered-photo-4 {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        transform: none;
+        display: flex;
+        justify-content: center;
+        margin: 20px auto;
+        animation: none;
+    }
+    
+    /* Reduce photo size for mobile */
+    .floating-photo {
+        width: 120px;
+        height: 120px;
+        opacity: 0.9;
+    }
+    
+    /* Stack photos vertically in mobile with proper spacing */
+    .story-section {
+        padding-bottom: 2rem;
+    }
+    
+    .story-section .scattered-photo-1,
+    .story-section .scattered-photo-2 {
+        margin: 30px auto;
+    }
+    
+    .invitation-section .scattered-photo-3,
+    .invitation-section .scattered-photo-4 {
+        margin: 30px auto;
+    }
+}
+
+/* Original Responsive Design */
+@media (max-width: 768px) {
+    /* Hero Section Mobile Optimization */
+    .hero {
+        height: 100vh;
+        background-position: center center;
+        background-size: cover;
+        background-attachment: scroll;
+    }
+    
+    .couple-names {
+        font-size: 2.5rem;
+    }
+    
+    .wedding-date {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .photo-slider {
+        height: 300px;
+    }
+    
+    .gallery-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .prev-btn {
+        left: 10px;
+    }
+    
+    .next-btn {
+        right: 10px;
+    }
+    
+    .invitation-card,
+    .rsvp-card {
+        padding: 2rem;
+        margin: 0 1rem;
+    }
+    
+    .links-grid {
+        gap: 1rem;
+        flex-direction: row;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 0 1rem;
+    }
+    
+    .link-card {
+        min-width: 180px;
+        max-width: 180px;
+        padding: 1.5rem 1rem;
+        flex-shrink: 0;
+    }
+    
+    .link-card h3 {
+        font-size: 1.4rem;
+    }
+    
+    .link-card p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .dress-code {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .couple-names {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .photo-slider {
+        height: 250px;
+    }
+    
+    .invitation-card,
+    .rsvp-card {
+        padding: 1.5rem;
+    }
+    
+    .invitation-header h2 {
+        font-size: 2rem;
+    }
+    
+    .modal-content {
+        margin: 25% auto;
+        padding: 1.5rem;
+    }
+}

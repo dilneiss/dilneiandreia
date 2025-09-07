@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test WhatsApp Emoji Issue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        button {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .message-preview {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            white-space: pre-line;
+            font-family: monospace;
+            border: 1px solid #ddd;
+        }
+        .url-preview {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            word-break: break-all;
+            font-size: 12px;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test WhatsApp Emoji Display Issue</h1>
+    
+    <div class="test-section">
+        <h2>Current Message WITH Emojis (problematic)</h2>
+        <div class="message-preview" id="currentMessage"></div>
+        <div class="url-preview" id="currentURL"></div>
+        <button onclick="testCurrentMessage()">Test Current Message with Emojis</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Fixed Message WITHOUT Emojis</h2>
+        <div class="message-preview" id="fixedMessage"></div>
+        <div class="url-preview" id="fixedURL"></div>
+        <button onclick="testFixedMessage()">Test Fixed Message without Emojis</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Alternative: Text-based emoticons</h2>
+        <div class="message-preview" id="textMessage"></div>
+        <div class="url-preview" id="textURL"></div>
+        <button onclick="testTextMessage()">Test Text Emoticons</button>
+    </div>
+
+    <script>
+        const guestName = "João Silva";
+        
+        // Current message with emojis (problematic)
+        const currentMessage = `Ola! 👰💒 Eu gostaria de confirmar minha presenca no casamento.
+Nome: ${guestName}
+Muito obrigado(a) pelo convite! 💕 Estou ansioso(a) para celebrar este momento especial com voces! 🎉✨`;
+
+        // Fixed message without emojis
+        const fixedMessage = `Ola! Eu gostaria de confirmar minha presenca no casamento.
+Nome: ${guestName}
+Muito obrigado(a) pelo convite! Estou ansioso(a) para celebrar este momento especial com voces!`;
+
+        // Alternative with text-based emoticons
+        const textMessage = `Ola! :) Eu gostaria de confirmar minha presenca no casamento.
+Nome: ${guestName}
+Muito obrigado(a) pelo convite! <3 Estou ansioso(a) para celebrar este momento especial com voces! :D`;
+
+        // Display messages
+        document.getElementById('currentMessage').textContent = currentMessage;
+        document.getElementById('fixedMessage').textContent = fixedMessage;
+        document.getElementById('textMessage').textContent = textMessage;
+
+        function testCurrentMessage() {
+            const encodedMessage = encodeURIComponent(currentMessage);
+            const whatsappNumber = '554896338116';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            document.getElementById('currentURL').textContent = whatsappURL;
+            console.log('Current URL with emojis:', whatsappURL);
+            window.open(whatsappURL, '_blank');
+        }
+
+        function testFixedMessage() {
+            const encodedMessage = encodeURIComponent(fixedMessage);
+            const whatsappNumber = '554896338116';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            document.getElementById('fixedURL').textContent = whatsappURL;
+            console.log('Fixed URL without emojis:', whatsappURL);
+            window.open(whatsappURL, '_blank');
+        }
+
+        function testTextMessage() {
+            const encodedMessage = encodeURIComponent(textMessage);
+            const whatsappNumber = '554896338116';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            document.getElementById('textURL').textContent = whatsappURL;
+            console.log('Text emoticons URL:', whatsappURL);
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Display URLs on page load
+        window.onload = function() {
+            testCurrentMessage();
+            testFixedMessage();
+            testTextMessage();
+        }
+    </script>
+</body>
+</html>

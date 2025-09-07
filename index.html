@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite de Casamento</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Main Invitation Content -->
+        <!-- Hero Section -->
+        <section class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1 class="couple-names">A ♥ D</h1>
+                <p class="wedding-date">Onde nossa história começa</p>
+                <div class="scroll-indicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Story Section -->
+        <section class="story-section">
+            <div class="container">
+                <h2 class="section-title">Nossa História</h2>
+                <div class="story-message">
+                    <p>Do primeiro olhar ao primeiro sorriso, cada momento ao seu lado se tornou especial. Nossa jornada começou com uma amizade sincera que floresceu em um amor verdadeiro e profundo.</p>
+                    <p>Hoje, queremos compartilhar com vocês a alegria de unir nossas vidas para sempre. Cada foto conta um pedaço da nossa história de amor, construída com carinho, cumplicidade e muita felicidade.</p>
+                </div>
+            </div>
+            <!-- Scattered Photos -->
+            <div class="scattered-photo-1">
+                <img src="fotos/IMG_9028-Editar.jpg" alt="Foto do casal" class="floating-photo">
+            </div>
+            <div class="scattered-photo-2">
+                <img src="fotos/IMG_9506-Editar.jpg" alt="Foto do casal" class="floating-photo">
+            </div>
+        </section>
+
+        <!-- Invitation Message -->
+        <section class="invitation-section">
+            <div class="container">
+                <div class="invitation-card">
+                    <div class="invitation-header">
+                        <i class="fas fa-heart"></i>
+                        <h2>Você está convidado(a)!</h2>
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="invitation-content">
+                        <p class="invitation-text">
+                            Com muito carinho e alegria, convidamos você para celebrar conosco este momento especial em nossas vidas.
+                        </p>
+                        <p class="invitation-text">
+                            Sua presença tornará este dia ainda mais especial e inesquecível!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Scattered Photos -->
+            <div class="scattered-photo-3">
+                <img src="fotos/IMG_9262-Editar.jpg" alt="Foto do casal" class="floating-photo">
+            </div>
+            <div class="scattered-photo-4">
+                <img src="fotos/IMG_9366-Editar.jpg" alt="Foto do casal" class="floating-photo">
+            </div>
+        </section>
+
+
+        <!-- Links Section -->
+        <section class="links-section">
+            <div class="container">
+                <h2 class="section-title">Informações Importantes</h2>
+                <div class="links-grid">
+                    <div class="link-card">
+                        <div class="link-icon">
+                            <i class="fas fa-church"></i>
+                        </div>
+                        <h3>Cerimônia</h3>
+                        <p>Igreja Sagrada Família - Tubarão</p>
+                        <a href="#" onclick="showCeremonyModal()" class="location-btn">
+                            <i class="fas fa-info-circle"></i>
+                            Ver Detalhes
+                        </a>
+                    </div>
+                    
+                    <div class="link-card">
+                        <div class="link-icon">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <h3>Recepção</h3>
+                        <p>NO BOSQUE Casa de Eventos</p>
+                        <a href="https://www.google.com/maps/place/NO+BOSQUE+casa+de+eventos/@-28.4819422,-48.9904883,17z/data=!3m1!4b1!4m6!3m5!1s0x952143c65431dff1:0xc8a159331fabf23b!8m2!3d-28.481947!4d-48.9856174!16s%2Fg%2F11sh1tp23m?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D" 
+                           target="_blank" class="location-btn">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Ver Localização
+                        </a>
+                    </div>
+                    
+                    <div class="link-card">
+                        <div class="link-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Lista de Presentes</h3>
+                        <p>Veja nossa lista de presentes</p>
+                        <a href="#" onclick="showGiftsMessage()" class="gifts-btn">
+                            <i class="fas fa-heart"></i>
+                            Ver Presentes
+                        </a>
+                    </div>
+                    
+                    <div class="link-card">
+                        <div class="link-icon">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <h3>Confirmar Presença</h3>
+                        <p>Confirme sua presença em nosso dia especial</p>
+                        <a href="#" onclick="showRSVPPage()" class="rsvp-btn">
+                            <i class="fas fa-check-circle"></i>
+                            Confirmar Presença
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>Feito com <i class="fas fa-heart"></i> para nosso dia especial</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Gift Message Modal -->
+    <div id="giftModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeGiftsModal()">&times;</span>
+            <h3>Lista de Presentes</h3>
+            <p>Em breve disponibilizaremos nossa lista de presentes. Fique atento às atualizações!</p>
+            <p>Sua presença já é o maior presente que poderíamos receber! ❤️</p>
+        </div>
+    </div>
+
+    <!-- RSVP Modal -->
+    <div id="rsvpModal" class="modal rsvp-modal">
+        <div class="modal-content rsvp-modal-content">
+            <span class="close" onclick="closeRSVPModal()">&times;</span>
+            <div class="rsvp-message">
+                <h3>Sua Presença é Especial!</h3>
+                <p>O quanto é importante a presença de você neste dia tão especial para nós! Cada sorriso, cada abraço e cada momento compartilhado tornará nossa celebração ainda mais significativa.</p>
+                <p>Por favor, confirme sua presença para que possamos planejar cada detalhe pensando em vocês, nossos queridos convidados.</p>
+                
+                <form class="rsvp-form" onsubmit="confirmPresence(event)">
+                    <div class="form-group">
+                        <label for="guestNameModal">Seu nome completo:</label>
+                        <input type="text" id="guestNameModal" name="guestNameModal" required 
+                               placeholder="Digite seu nome completo">
+                    </div>
+                    <button type="submit" class="confirm-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Confirmar minha presença
+                    </button>
+                </form>
+                <p class="rsvp-note">
+                    <i class="fas fa-info-circle"></i>
+                    Ao clicar, você será redirecionado para o WhatsApp com uma mensagem pré-formatada.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ceremony Modal -->
+    <div id="ceremonyModal" class="modal ceremony-modal">
+        <div class="modal-content ceremony-modal-content">
+            <span class="close" onclick="closeCeremonyModal()">&times;</span>
+            <div class="ceremony-photo">
+                <img src="fotos/igreja.png" alt="Igreja Sagrada Família" class="ceremony-image">
+            </div>
+            <div class="ceremony-message">
+                <h3>Cerimônia Religiosa</h3>
+                <div class="ceremony-info">
+                    <div class="ceremony-detail">
+                        <i class="fas fa-church"></i>
+                        <div>
+                            <strong>Igreja Sagrada Família</strong>
+                            <p>Rua Lauro Müller, 185 - Centro, Tubarão - SC, 88701-010</p>
+                        </div>
+                    </div>
+                    <div class="ceremony-detail">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <strong>Data e Horário</strong>
+                            <p>29 de Novembro de 2025 às 15:30</p>
+                        </div>
+                    </div>
+                    <div class="ceremony-detail">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Informações</strong>
+                            <p>Venha celebrar conosco este momento único e especial em nossas vidas!</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://www.google.com/maps/search/igreja+sagrada+familia+tubarao/@-28.4800139,-48.9948408,14z?entry=s&sa=X&ved=1t%3A199789" 
+                   target="_blank" class="ceremony-location-btn">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Ver Localização no Mapa
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
