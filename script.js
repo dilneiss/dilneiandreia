@@ -481,3 +481,129 @@ document.addEventListener('keydown', function(event) {
         closeReceptionModal();
     }
 });
+
+// Add to Calendar Function
+function addToCalendar() {
+    // Wedding event details
+    const eventDetails = {
+        title: 'Casamento A & D',
+        startDate: '20251129T153000', // 29/11/2025 15:30 in ISO format (YYYYMMDDTHHMMSS)
+        endDate: '20251129T210000',   // Estimated end time 21:00
+        location: 'Igreja Sagrada Família, Vila Moema, Tubarão - SC',
+        description: 'Celebre conosco este momento único e especial em nossas vidas! Cerimônia religiosa seguida de recepção no NO BOSQUE Casa de Eventos.'
+    };
+    
+    // Create calendar options modal
+    const calendarModal = `
+        <div id="calendarModal" class="modal" style="display: block;">
+            <div class="modal-content">
+                <span class="close" onclick="closeCalendarModal()">&times;</span>
+                <h3><i class="fas fa-calendar-plus"></i> Adicionar à Agenda</h3>
+                <p>Escolha seu serviço de calendário preferido:</p>
+                <div style="display: flex; flex-direction: column; gap: 15px; margin: 20px 0;">
+                    <a href="${generateGoogleCalendarUrl(eventDetails)}" 
+                       target="_blank" 
+                       onclick="closeCalendarModal()"
+                       style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: #4285f4; color: white; text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
+                        <i class="fab fa-google"></i>
+                        Google Calendar
+                    </a>
+                    <a href="${generateOutlookUrl(eventDetails)}" 
+                       target="_blank" 
+                       onclick="closeCalendarModal()"
+                       style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: #0078d4; color: white; text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
+                        <i class="fab fa-microsoft"></i>
+                        Outlook / Hotmail
+                    </a>
+                    <a href="${generateICSFile(eventDetails)}" 
+                       download="casamento-a-d.ics"
+                       onclick="closeCalendarModal()"
+                       style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: #8b4f7f; color: white; text-decoration: none; border-radius: 8px; transition: all 0.3s ease;">
+                        <i class="fas fa-download"></i>
+                        Baixar arquivo .ICS
+                    </a>
+                </div>
+                <p style="font-size: 0.9rem; color: #666; text-align: center; margin-top: 15px;">
+                    <i class="fas fa-info-circle"></i>
+                    O arquivo .ICS funciona com Apple Calendar, Thunderbird e outros aplicativos de calendário.
+                </p>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', calendarModal);
+}
+
+// Generate Google Calendar URL
+function generateGoogleCalendarUrl(event) {
+    const baseUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
+    const params = new URLSearchParams({
+        text: event.title,
+        dates: `${event.startDate}/${event.endDate}`,
+        location: event.location,
+        details: event.description
+    });
+    return `${baseUrl}&${params.toString()}`;
+}
+
+// Generate Outlook URL
+function generateOutlookUrl(event) {
+    const baseUrl = 'https://outlook.live.com/calendar/0/deeplink/compose';
+    const params = new URLSearchParams({
+        subject: event.title,
+        startdt: event.startDate,
+        enddt: event.endDate,
+        location: event.location,
+        body: event.description
+    });
+    return `${baseUrl}?${params.toString()}`;
+}
+
+// Generate ICS file content
+function generateICSFile(event) {
+    const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Wedding//Wedding Invitation//PT',
+        'BEGIN:VEVENT',
+        `UID:${Date.now()}@casamento-a-d.com`,
+        `DTSTART:${event.startDate}`,
+        `DTEND:${event.endDate}`,
+        `SUMMARY:${event.title}`,
+        `DESCRIPTION:${event.description}`,
+        `LOCATION:${event.location}`,
+        'STATUS:CONFIRMED',
+        'BEGIN:VALARM',
+        'TRIGGER:-P1D',
+        'ACTION:DISPLAY',
+        'DESCRIPTION:Lembrete: Casamento A & D amanhã!',
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+    ].join('\r\n');
+    
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    return URL.createObjectURL(blob);
+}
+
+// Close calendar modal
+function closeCalendarModal() {
+    const modal = document.getElementById('calendarModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// Update window click handler to include calendar modal
+const originalWindowClickHandler = window.onclick;
+window.onclick = function(event) {
+    // Call original handler first
+    if (originalWindowClickHandler) {
+        originalWindowClickHandler(event);
+    }
+    
+    const calendarModal = document.getElementById('calendarModal');
+    if (event.target === calendarModal && calendarModal) {
+        closeCalendarModal();
+    }
+};
