@@ -95,10 +95,9 @@
                         </div>
                         <h3>Recepção</h3>
                         <p>NO BOSQUE Casa de Eventos</p>
-                        <a href="https://www.google.com/maps/place/NO+BOSQUE+casa+de+eventos/@-28.4819422,-48.9904883,17z/data=!3m1!4b1!4m6!3m5!1s0x952143c65431dff1:0xc8a159331fabf23b!8m2!3d-28.481947!4d-48.9856174!16s%2Fg%2F11sh1tp23m?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D" 
-                           target="_blank" class="location-btn">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Ver Localização
+                        <a href="#" onclick="showReceptionModal()" class="location-btn">
+                            <i class="fas fa-info-circle"></i>
+                            Ver Detalhes
                         </a>
                     </div>
                     
@@ -189,7 +188,7 @@
                         <i class="fas fa-church"></i>
                         <div>
                             <strong>Igreja Sagrada Família</strong>
-                            <p>Rua Lauro Müller, 185 - Centro, Tubarão - SC, 88701-010</p>
+                            <p>Vila Moema, Tubarão - SC, 88705-070</p>
                         </div>
                     </div>
                     <div class="ceremony-detail">
@@ -207,8 +206,49 @@
                         </div>
                     </div>
                 </div>
-                <a href="https://www.google.com/maps/search/igreja+sagrada+familia+tubarao/@-28.4800139,-48.9948408,14z?entry=s&sa=X&ved=1t%3A199789" 
+                <a href="https://maps.app.goo.gl/qTsctJM7Pz9FgiLE7" 
                    target="_blank" class="ceremony-location-btn">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Ver Localização no Mapa
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reception Modal -->
+    <div id="receptionModal" class="modal reception-modal">
+        <div class="modal-content reception-modal-content">
+            <span class="close" onclick="closeReceptionModal()">&times;</span>
+            <div class="reception-photo">
+                <img src="fotos/bosque.png" alt="NO BOSQUE Casa de Eventos" class="reception-image">
+            </div>
+            <div class="reception-message">
+                <h3>Recepção</h3>
+                <div class="reception-info">
+                    <div class="reception-detail">
+                        <i class="fas fa-glass-cheers"></i>
+                        <div>
+                            <strong>NO BOSQUE Casa de Eventos</strong>
+                            <p>Rodovia SC-438, 2755 - Dehon, Tubarão - SC, 88704-900</p>
+                        </div>
+                    </div>
+                    <div class="reception-detail">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <strong>Horário</strong>
+                            <p>Após a cerimônia religiosa</p>
+                        </div>
+                    </div>
+                    <div class="reception-detail">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Informações</strong>
+                            <p>Celebre conosco com muita alegria, música e diversão em um ambiente único!</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://www.google.com/maps/place/NO+BOSQUE+casa+de+eventos/@-28.4819422,-48.9904883,17z/data=!3m1!4b1!4m6!3m5!1s0x952143c65431dff1:0xc8a159331fabf23b!8m2!3d-28.481947!4d-48.9856174!16s%2Fg%2F11sh1tp23m?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D" 
+                   target="_blank" class="reception-location-btn">
                     <i class="fas fa-map-marker-alt"></i>
                     Ver Localização no Mapa
                 </a>

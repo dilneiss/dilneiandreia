@@ -416,6 +416,21 @@ function closeCeremonyModal() {
     }
 }
 
+// Reception Modal Functions
+function showReceptionModal() {
+    const modal = document.getElementById('receptionModal');
+    if (modal) {
+        modal.style.display = 'block';
+    }
+}
+
+function closeReceptionModal() {
+    const modal = document.getElementById('receptionModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
 // Update existing modal click handler to include new modals
 const originalWindowClick = window.onclick;
 window.onclick = function(event) {
@@ -424,6 +439,7 @@ window.onclick = function(event) {
     const locationModal = document.getElementById('locationModal');
     const rsvpModal = document.getElementById('rsvpModal');
     const ceremonyModal = document.getElementById('ceremonyModal');
+    const receptionModal = document.getElementById('receptionModal');
     
     if (event.target === giftModal && giftModal) {
         giftModal.style.display = 'none';
@@ -444,6 +460,10 @@ window.onclick = function(event) {
     if (event.target === ceremonyModal && ceremonyModal) {
         closeCeremonyModal();
     }
+    
+    if (event.target === receptionModal && receptionModal) {
+        closeReceptionModal();
+    }
 }
 
 // Update keyboard navigation to include new modals
@@ -458,5 +478,6 @@ document.addEventListener('keydown', function(event) {
         closeLocationModal();
         closeRSVPModal();
         closeCeremonyModal();
+        closeReceptionModal();
     }
 });
