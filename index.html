@@ -7,6 +7,28 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        // Cache-busting mechanism for CSS and JS files
+        (function() {
+            var version = Date.now(); // Current timestamp for cache busting
+            
+            // Update CSS file with cache-busting parameter
+            var cssLink = document.querySelector('link[href="style.css"]');
+            if (cssLink) {
+                cssLink.href = 'style.css?v=' + version;
+            }
+            
+            // Update script src when DOM is loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                var scriptTag = document.querySelector('script[src="script.js"]');
+                if (scriptTag) {
+                    var newScript = document.createElement('script');
+                    newScript.src = 'script.js?v=' + version;
+                    scriptTag.parentNode.replaceChild(newScript, scriptTag);
+                }
+            });
+        })();
+    </script>
 </head>
 <body>
     <!-- Main Invitation Content -->
