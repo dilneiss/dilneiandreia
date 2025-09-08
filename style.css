@@ -672,7 +672,7 @@ body {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 10000;
     left: 0;
     top: 0;
     width: 100%;
@@ -722,7 +722,7 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    z-index: 1001;
+    z-index: 10001;
 }
 
 .back-to-gifts-btn:hover {
