@@ -939,6 +939,27 @@ window.onclick = function(event) {
 // Background Music Control
 let musicPlaying = false;
 
+// Initialize music state on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const musicVideo = document.getElementById('background-music');
+    const musicBtn = document.getElementById('music-control-btn');
+    
+    if (musicVideo && musicBtn) {
+        // Check if video is playing automatically and unmute it
+        setTimeout(() => {
+            if (!musicVideo.paused) {
+                // Automatically unmute the video so users can hear the music
+                musicVideo.muted = false;
+                musicPlaying = true;
+                const icon = musicBtn.querySelector('i');
+                icon.className = 'fas fa-pause';
+                musicBtn.title = 'Pausar música de fundo';
+                musicBtn.style.background = 'rgba(139, 79, 127, 0.9)';
+            }
+        }, 500);
+    }
+});
+
 function toggleMusic() {
     const musicVideo = document.getElementById('background-music');
     const musicBtn = document.getElementById('music-control-btn');
@@ -961,7 +982,6 @@ function toggleMusic() {
     } else {
         // Pause music
         musicVideo.pause();
-        musicVideo.muted = true;
         musicPlaying = false;
         icon.className = 'fas fa-play';
         musicBtn.title = 'Reproduzir música de fundo';
