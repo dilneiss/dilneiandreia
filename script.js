@@ -397,6 +397,12 @@ function closeGiftPaymentModal() {
     }
 }
 
+function backToGiftList() {
+    // Close payment modal and show gift list modal
+    closeGiftPaymentModal();
+    showGiftsMessage();
+}
+
 // Close modal when clicking outside of it
 window.onclick = function(event) {
     const giftModal = document.getElementById('giftModal');
