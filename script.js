@@ -221,6 +221,12 @@ function generatePixQRCode(amount) {
     // Format: 00020126580014br.gov.bcb.pix0136{pixKey}52040000530398654{amount}5802BR59{nameLength}{merchantName}60{cityLength}{merchantCity}62070503***6304{CRC}
     const pixPayload = generatePixPayload(pixKey, merchantName, merchantCity, amount_formatted);
     
+    // Update the copy/paste field with complete PIX payload
+    const pixKeyField = document.getElementById('pixKeyField');
+    if (pixKeyField) {
+        pixKeyField.value = pixPayload;
+    }
+    
     // Create canvas element for QR code
     const canvas = document.createElement('canvas');
     canvas.style.maxWidth = '100%';
