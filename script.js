@@ -935,3 +935,36 @@ window.onclick = function(event) {
         closeCalendarModal();
     }
 };
+
+// Background Music Control
+let musicPlaying = false;
+
+function toggleMusic() {
+    const musicVideo = document.getElementById('background-music');
+    const musicBtn = document.getElementById('music-control-btn');
+
+    if (!musicVideo || !musicBtn) return;
+
+    const icon = musicBtn.querySelector('i');
+
+    if (!musicPlaying) {
+        // Start playing music (unmuted)
+        musicVideo.muted = false;
+        musicVideo.play().then(() => {
+            musicPlaying = true;
+            icon.className = 'fas fa-pause';
+            musicBtn.title = 'Pausar música de fundo';
+            musicBtn.style.background = 'rgba(139, 79, 127, 0.9)';
+        }).catch(e => {
+            console.log('Unable to play video:', e);
+        });
+    } else {
+        // Pause music
+        musicVideo.pause();
+        musicVideo.muted = true;
+        musicPlaying = false;
+        icon.className = 'fas fa-play';
+        musicBtn.title = 'Reproduzir música de fundo';
+        musicBtn.style.background = 'rgba(139, 79, 127, 0.6)';
+    }
+}
