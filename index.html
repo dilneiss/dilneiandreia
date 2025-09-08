@@ -224,7 +224,15 @@
                     <div class="qr-code-container" id="qrCodeContainer">
                         <!-- QR Code will be generated here -->
                     </div>
-                    <p class="qr-instructions">Escaneie o QR Code com o app do seu banco ou use a chave PIX: <strong>064.537.659-00</strong></p>
+                    <div class="pix-copy-section">
+                        <label for="pixKeyField">Chave PIX:</label>
+                        <div class="pix-copy-container">
+                            <input type="text" id="pixKeyField" value="064.537.659-00" readonly>
+                            <button onclick="copyPixKey()" class="copy-btn" title="Copiar chave PIX">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="whatsapp-section">
                     <p>Após realizar o pagamento, envie o comprovante:</p>

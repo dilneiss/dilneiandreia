@@ -403,6 +403,32 @@ function backToGiftList() {
     showGiftsMessage();
 }
 
+function copyPixKey() {
+    const pixKeyField = document.getElementById('pixKeyField');
+    if (pixKeyField) {
+        pixKeyField.select();
+        pixKeyField.setSelectionRange(0, 99999); // For mobile devices
+        
+        try {
+            document.execCommand('copy');
+            
+            // Show feedback
+            const copyBtn = document.querySelector('.copy-btn');
+            const originalHTML = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+            copyBtn.style.background = '#25d366';
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = originalHTML;
+                copyBtn.style.background = '';
+            }, 1500);
+            
+        } catch (err) {
+            console.error('Failed to copy PIX key:', err);
+        }
+    }
+}
+
 // Close modal when clicking outside of it
 window.onclick = function(event) {
     const giftModal = document.getElementById('giftModal');
