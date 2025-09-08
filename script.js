@@ -104,16 +104,197 @@ function closeConfirmationModal() {
     }
 }
 
+// Gift List Data - 20 Creative Options
+const giftList = [
+    { id: 1, name: "Ajuda na Lua de Mel", description: "Contribua para nossa viagem dos sonhos!", price: 100, icon: "fa-plane", category: "honeymoon" },
+    { id: 2, name: "Alexa para a Mulher não Gritar só com o Marido", description: "Echo Dot para comandos de voz em casa!", price: 350, icon: "fa-microphone", category: "tech" },
+    { id: 3, name: "Kit Sobrevivência para Recém-Casados", description: "Pizza congelada, energético e paciência!", price: 80, icon: "fa-first-aid", category: "fun" },
+    { id: 4, name: "Curso de Culinária para Ele", description: "Para que ela não cozinhe sempre sozinha!", price: 200, icon: "fa-utensils", category: "experience" },
+    { id: 5, name: "Netflix Premium por 1 Ano", description: "Para as brigas sobre o que assistir!", price: 180, icon: "fa-tv", category: "entertainment" },
+    { id: 6, name: "Kit de Ferramentas Básicas", description: "Porque YouTube não ensina tudo!", price: 150, icon: "fa-hammer", category: "home" },
+    { id: 7, name: "Sessão de Terapia de Casal", description: "Investimento preventivo no relacionamento!", price: 300, icon: "fa-heart", category: "relationship" },
+    { id: 8, name: "Aspirador de Pó Robô", description: "Para acabar com as discussões sobre limpeza!", price: 800, icon: "fa-robot", category: "home" },
+    { id: 9, name: "Kit de Vinhos para Discussões", description: "Quando a conversa esquenta, o vinho esfria!", price: 120, icon: "fa-wine-glass", category: "drink" },
+    { id: 10, name: "Conta de Delivery por 1 Mês", description: "Para quando nenhum dos dois quer cozinhar!", price: 250, icon: "fa-motorcycle", category: "food" },
+    { id: 11, name: "Fones de Ouvido Bluetooth", description: "Para ouvir música e fingir que não escuta reclamação!", price: 200, icon: "fa-headphones", category: "tech" },
+    { id: 12, name: "Livro 'Como Não Matar Seu Cônjuge'", description: "Manual de sobrevivência matrimonial!", price: 40, icon: "fa-book", category: "fun" },
+    { id: 13, name: "Kit de Plantas para Apartamento", description: "Para ter algo vivo além do relacionamento!", price: 90, icon: "fa-leaf", category: "home" },
+    { id: 14, name: "Assinatura de Streaming de Filmes", description: "Para as noites de 'você escolhe', 'não, você escolhe'!", price: 60, icon: "fa-film", category: "entertainment" },
+    { id: 15, name: "Cafeteira Expresso", description: "Café forte para aguentar os primeiros anos!", price: 450, icon: "fa-coffee", category: "home" },
+    { id: 16, name: "Kit de Jogos de Tabuleiro", description: "Para descobrir quem é mais competitivo!", price: 180, icon: "fa-dice", category: "entertainment" },
+    { id: 17, name: "Sessão de Massagem para o Casal", description: "Relaxamento após as brigas por bobagem!", price: 280, icon: "fa-spa", category: "experience" },
+    { id: 18, name: "Air Fryer", description: "Para frituras sem culpa e brigas por comida!", price: 300, icon: "fa-fire", category: "home" },
+    { id: 19, name: "Kit de Sobremesas Gourmet", description: "Açúcar para adoçar os momentos amargos!", price: 70, icon: "fa-birthday-cake", category: "food" },
+    { id: 20, name: "Voucher para Jantar Romântico", description: "Para lembrar por que se casaram!", price: 200, icon: "fa-heart", category: "experience" }
+];
+
+let selectedGift = null;
+
 // Gifts Modal Functions
 function showGiftsMessage() {
     const modal = document.getElementById('giftModal');
     if (modal) {
+        populateGiftGrid();
         modal.style.display = 'block';
+    }
+}
+
+function populateGiftGrid() {
+    const giftGrid = document.getElementById('giftGrid');
+    if (!giftGrid) return;
+    
+    giftGrid.innerHTML = '';
+    
+    giftList.forEach(gift => {
+        const giftCard = document.createElement('div');
+        giftCard.className = 'gift-card';
+        giftCard.onclick = () => selectGift(gift);
+        
+        giftCard.innerHTML = `
+            <div class="gift-icon">
+                <i class="fas ${gift.icon}"></i>
+            </div>
+            <h4 class="gift-name">${gift.name}</h4>
+            <p class="gift-description">${gift.description}</p>
+            <div class="gift-price">R$ ${gift.price.toLocaleString('pt-BR')},00</div>
+            <button class="select-gift-btn">
+                <i class="fas fa-gift"></i>
+                Presentear
+            </button>
+        `;
+        
+        giftGrid.appendChild(giftCard);
+    });
+}
+
+function selectGift(gift) {
+    selectedGift = gift;
+    showGiftPaymentModal();
+}
+
+function showGiftPaymentModal() {
+    if (!selectedGift) return;
+    
+    // Update selected gift info
+    const selectedGiftInfo = document.getElementById('selectedGiftInfo');
+    selectedGiftInfo.innerHTML = `
+        <div class="selected-gift-card">
+            <div class="selected-gift-icon">
+                <i class="fas ${selectedGift.icon}"></i>
+            </div>
+            <div class="selected-gift-details">
+                <h4>${selectedGift.name}</h4>
+                <p>${selectedGift.description}</p>
+                <div class="selected-gift-price">R$ ${selectedGift.price.toLocaleString('pt-BR')},00</div>
+            </div>
+        </div>
+    `;
+    
+    // Update gift amount
+    document.getElementById('giftAmount').textContent = `R$ ${selectedGift.price.toLocaleString('pt-BR')},00`;
+    
+    // Generate QR Code
+    generatePixQRCode(selectedGift.price);
+    
+    // Show payment modal
+    closeGiftsModal();
+    const paymentModal = document.getElementById('giftPaymentModal');
+    if (paymentModal) {
+        paymentModal.style.display = 'block';
+    }
+}
+
+function generatePixQRCode(amount) {
+    const qrContainer = document.getElementById('qrCodeContainer');
+    if (!qrContainer) return;
+    
+    // Clear previous QR code
+    qrContainer.innerHTML = '';
+    
+    // PIX payload data
+    const pixKey = '06453765900'; // CPF
+    const merchantName = 'DILNEI SOETHE SPANCERSKI';
+    const merchantCity = 'TUBARAO';
+    const amount_formatted = amount.toFixed(2);
+    
+    // Create PIX QR Code data (simplified version)
+    const pixPayload = `00020126580014br.gov.bcb.pix0136${pixKey}52040000530398654${amount_formatted.padStart(10, '0')}5802BR5925${merchantName}6007${merchantCity}62070503***6304`;
+    
+    // Create QR code using a simple library approach
+    const qrCodeDiv = document.createElement('div');
+    qrCodeDiv.className = 'qr-code-display';
+    qrCodeDiv.innerHTML = `
+        <div class="qr-placeholder">
+            <i class="fas fa-qrcode" style="font-size: 120px; color: #8b4f7f;"></i>
+            <p style="margin-top: 10px; font-size: 12px; color: #666;">
+                Use a chave PIX: <strong>${pixKey}</strong><br>
+                Valor: <strong>R$ ${amount_formatted.replace('.', ',')}</strong>
+            </p>
+        </div>
+    `;
+    
+    qrContainer.appendChild(qrCodeDiv);
+}
+
+function sendPaymentProof() {
+    if (!selectedGift) return;
+    
+    const message = `🎁 *Comprovante de Presente de Casamento*
+    
+Olá! Acabei de realizar o pagamento do presente:
+📦 *${selectedGift.name}*
+💰 Valor: R$ ${selectedGift.price.toLocaleString('pt-BR')},00
+🏦 PIX: 064.537.659-00
+
+Estou enviando o comprovante de pagamento.
+
+Muito feliz por poder contribuir para o início da vida de vocês! ❤️`;
+    
+    const whatsappUrl = `https://wa.me/5548996338116?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Show confirmation
+    closeGiftPaymentModal();
+    showPaymentConfirmation();
+}
+
+function showPaymentConfirmation() {
+    const confirmationHTML = `
+        <div id="paymentConfirmationModal" class="modal" style="display: block;">
+            <div class="modal-content">
+                <span class="close" onclick="closePaymentConfirmation()">&times;</span>
+                <div style="text-align: center;">
+                    <i class="fas fa-check-circle" style="font-size: 3rem; color: #25d366; margin-bottom: 1rem;"></i>
+                    <h3>Obrigado pelo Presente! 🎁</h3>
+                    <p>Você foi redirecionado para o WhatsApp para enviar o comprovante.</p>
+                    <p>Sua generosidade significa muito para nós! ❤️</p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', confirmationHTML);
+    
+    // Auto-close after 4 seconds
+    setTimeout(closePaymentConfirmation, 4000);
+}
+
+function closePaymentConfirmation() {
+    const modal = document.getElementById('paymentConfirmationModal');
+    if (modal) {
+        modal.remove();
     }
 }
 
 function closeGiftsModal() {
     const modal = document.getElementById('giftModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function closeGiftPaymentModal() {
+    const modal = document.getElementById('giftPaymentModal');
     if (modal) {
         modal.style.display = 'none';
     }
@@ -435,18 +616,28 @@ function closeReceptionModal() {
 const originalWindowClick = window.onclick;
 window.onclick = function(event) {
     const giftModal = document.getElementById('giftModal');
+    const giftPaymentModal = document.getElementById('giftPaymentModal');
     const confirmationModal = document.getElementById('confirmationModal');
+    const paymentConfirmationModal = document.getElementById('paymentConfirmationModal');
     const locationModal = document.getElementById('locationModal');
     const rsvpModal = document.getElementById('rsvpModal');
     const ceremonyModal = document.getElementById('ceremonyModal');
     const receptionModal = document.getElementById('receptionModal');
     
     if (event.target === giftModal && giftModal) {
-        giftModal.style.display = 'none';
+        closeGiftsModal();
+    }
+    
+    if (event.target === giftPaymentModal && giftPaymentModal) {
+        closeGiftPaymentModal();
     }
     
     if (event.target === confirmationModal && confirmationModal) {
         closeConfirmationModal();
+    }
+    
+    if (event.target === paymentConfirmationModal && paymentConfirmationModal) {
+        closePaymentConfirmation();
     }
     
     if (event.target === locationModal && locationModal) {
@@ -474,7 +665,9 @@ document.addEventListener('keydown', function(event) {
         nextPhoto();
     } else if (event.key === 'Escape') {
         closeGiftsModal();
+        closeGiftPaymentModal();
         closeConfirmationModal();
+        closePaymentConfirmation();
         closeLocationModal();
         closeRSVPModal();
         closeCeremonyModal();
