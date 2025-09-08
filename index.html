@@ -163,13 +163,72 @@
         </footer>
     </main>
 
-    <!-- Gift Message Modal -->
-    <div id="giftModal" class="modal">
-        <div class="modal-content">
+    <!-- Gift List Modal -->
+    <div id="giftModal" class="modal gift-modal">
+        <div class="modal-content gift-modal-content">
             <span class="close" onclick="closeGiftsModal()">&times;</span>
-            <h3>Lista de Presentes</h3>
-            <p>Em breve disponibilizaremos nossa lista de presentes. Fique atento às atualizações!</p>
-            <p>Sua presença já é o maior presente que poderíamos receber! ❤️</p>
+            <div class="gift-header">
+                <h3><i class="fas fa-gift"></i> Lista de Presentes</h3>
+                <p>Escolha um presente especial para nos ajudar a começar nossa nova vida juntos!</p>
+            </div>
+            <div class="gift-grid" id="giftGrid">
+                <!-- Gift items will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Gift Payment Modal -->
+    <div id="giftPaymentModal" class="modal">
+        <div class="modal-content gift-payment-content">
+            <span class="close" onclick="closeGiftPaymentModal()">&times;</span>
+            <div class="gift-payment-header">
+                <h3><i class="fas fa-credit-card"></i> Pagamento PIX</h3>
+                <div class="selected-gift-info" id="selectedGiftInfo">
+                    <!-- Selected gift info will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="pix-payment-section">
+                <div class="pix-info">
+                    <h4>Dados para Pagamento</h4>
+                    <div class="pix-details">
+                        <div class="pix-detail">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <strong>Nome:</strong>
+                                <p>Dilnei Soethe Spancerski</p>
+                            </div>
+                        </div>
+                        <div class="pix-detail">
+                            <i class="fas fa-id-card"></i>
+                            <div>
+                                <strong>CPF:</strong>
+                                <p>064.537.659-00</p>
+                            </div>
+                        </div>
+                        <div class="pix-detail">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <div>
+                                <strong>Valor:</strong>
+                                <p id="giftAmount">R$ 0,00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="qr-code-section">
+                    <h4>QR Code PIX</h4>
+                    <div class="qr-code-container" id="qrCodeContainer">
+                        <!-- QR Code will be generated here -->
+                    </div>
+                    <p class="qr-instructions">Escaneie o QR Code com o app do seu banco ou use a chave PIX: <strong>064.537.659-00</strong></p>
+                </div>
+                <div class="whatsapp-section">
+                    <p>Após realizar o pagamento, envie o comprovante:</p>
+                    <a href="#" onclick="sendPaymentProof()" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        Enviar Comprovante
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 

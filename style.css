@@ -883,6 +883,8 @@ body {
         width: 95%;
         max-height: 95vh;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
     }
     
     .ceremony-photo {
@@ -1022,6 +1024,8 @@ body {
         width: 95%;
         max-height: 95vh;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
     }
     
     .reception-photo {
@@ -1339,6 +1343,18 @@ body {
     /* Modal positioning for mobile */
     .modal-content {
         margin: 5% auto;
+    }
+    
+    /* Ensure ceremony and reception modals scroll properly on mobile */
+    .ceremony-modal,
+    .reception-modal {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .ceremony-modal-content,
+    .reception-modal-content {
+        margin: 10px auto !important;
     }
 }
 
