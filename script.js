@@ -351,7 +351,7 @@ Olá! Acabei de realizar o pagamento do presente:
 
 Estou enviando o comprovante de pagamento.
 
-Muito feliz por poder contribuir para o início da vida de vocês! ❤️`;
+Muito feliz por poder contribuir com o casamento de vocês! ❤️`;
     
     const whatsappUrl = `https://wa.me/5548996338116?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');

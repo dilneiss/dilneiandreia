@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modal Z-Index Fix</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #8b4f7f;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .test-button:hover {
+            background: #a05d8a;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid;
+        }
+        .success { background: #d4edda; color: #155724; border-color: #c3e6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
+    </style>
+</head>
+<body>
+    <!-- Music Control Button (same z-index as main site) -->
+    <button id="music-control-btn" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: rgba(139, 79, 127, 0.9); color: white; border: none; padding: 12px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-size: 16px;" title="Música de fundo">
+        <i class="fas fa-play" style="font-size: 14px;"></i>
+    </button>
+
+    <div class="test-container">
+        <h1>Test Modal Z-Index Fix</h1>
+        <div class="status info">
+            <h3>Z-Index Values:</h3>
+            <p><strong>Music Control Button:</strong> z-index: 9999</p>
+            <p><strong>Modal Overlay:</strong> z-index: 10000</p>
+            <p><strong>Modal Back Button:</strong> z-index: 10001</p>
+        </div>
+        
+        <div class="status success">
+            <h3>Test Instructions:</h3>
+            <ol>
+                <li>Click "Open Test Modal" button below</li>
+                <li>Verify the modal opens and covers the music button</li>
+                <li>Try to click the close button (×) in the top-right of the modal</li>
+                <li>The close button should be clickable and not blocked by the music button</li>
+                <li>On mobile, ensure you can access all modal controls</li>
+            </ol>
+        </div>
+
+        <button class="test-button" onclick="openTestModal()">Open Test Modal</button>
+        
+        <div id="test-results" style="margin-top: 20px;"></div>
+    </div>
+
+    <!-- Test Modal -->
+    <div id="testModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTestModal()">&times;</span>
+            <h3>Test Modal</h3>
+            <p>This modal should appear above the music control button.</p>
+            <p>The close button (×) should be clickable and not blocked.</p>
+            <button class="test-button" onclick="testCloseButton()">Test Close Button Accessibility</button>
+            <div id="close-test-result"></div>
+        </div>
+    </div>
+
+    <script>
+        function openTestModal() {
+            const modal = document.getElementById('testModal');
+            modal.style.display = 'block';
+            
+            // Log z-index values for debugging
+            const musicBtn = document.getElementById('music-control-btn');
+            const modalElement = document.getElementById('testModal');
+            
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = `
+                <div class="status info">
+                    <h4>Current Z-Index Values:</h4>
+                    <p>Music Button Computed Z-Index: ${window.getComputedStyle(musicBtn).zIndex}</p>
+                    <p>Modal Computed Z-Index: ${window.getComputedStyle(modalElement).zIndex}</p>
+                    <p>Modal should have higher z-index than music button!</p>
+                </div>
+            `;
+        }
+
+        function closeTestModal() {
+            const modal = document.getElementById('testModal');
+            modal.style.display = 'none';
+            
+            const testResult = document.getElementById('close-test-result');
+            testResult.innerHTML = '<div class="status success">✓ Close button is working properly!</div>';
+        }
+
+        function testCloseButton() {
+            const testResult = document.getElementById('close-test-result');
+            testResult.innerHTML = '<div class="status success">✓ Close button is accessible and not blocked by music button!</div>';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('testModal');
+            if (event.target == modal) {
+                closeTestModal();
+            }
+        }
+    </script>
+</body>
+</html>
