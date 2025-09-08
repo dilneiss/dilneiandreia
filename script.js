@@ -214,26 +214,123 @@ function generatePixQRCode(amount) {
     // PIX payload data
     const pixKey = '06453765900'; // CPF
     const merchantName = 'DILNEI SOETHE SPANCERSKI';
-    const merchantCity = 'TUBARAO';
+    const merchantCity = 'BRACODONORTE';
     const amount_formatted = amount.toFixed(2);
     
-    // Create PIX QR Code data (simplified version)
-    const pixPayload = `00020126580014br.gov.bcb.pix0136${pixKey}52040000530398654${amount_formatted.padStart(10, '0')}5802BR5925${merchantName}6007${merchantCity}62070503***6304`;
+    // Create proper PIX QR Code payload according to EMV standard
+    // Format: 00020126580014br.gov.bcb.pix0136{pixKey}52040000530398654{amount}5802BR59{nameLength}{merchantName}60{cityLength}{merchantCity}62070503***6304{CRC}
+    const pixPayload = generatePixPayload(pixKey, merchantName, merchantCity, amount_formatted);
     
-    // Create QR code using a simple library approach
-    const qrCodeDiv = document.createElement('div');
-    qrCodeDiv.className = 'qr-code-display';
-    qrCodeDiv.innerHTML = `
+    // Create canvas element for QR code
+    const canvas = document.createElement('canvas');
+    canvas.style.maxWidth = '100%';
+    canvas.style.height = 'auto';
+    
+    // Generate QR code using QRCode.js library
+    if (typeof QRCode !== 'undefined') {
+        QRCode.toCanvas(canvas, pixPayload, {
+            width: 256,
+            margin: 2,
+            color: {
+                dark: '#000000',
+                light: '#FFFFFF'
+            }
+        }, function (error) {
+            if (error) {
+                console.error('QR Code generation error:', error);
+                // Fallback to manual instructions if QR generation fails
+                showPixInstructions(qrContainer, pixKey, amount_formatted);
+            } else {
+                // Success - add canvas to container with instructions
+                const qrCodeDiv = document.createElement('div');
+                qrCodeDiv.className = 'qr-code-display';
+                qrCodeDiv.style.textAlign = 'center';
+                
+                qrCodeDiv.appendChild(canvas);
+                
+                const instructions = document.createElement('p');
+                instructions.style.marginTop = '10px';
+                instructions.style.fontSize = '12px';
+                instructions.style.color = '#666';
+                instructions.innerHTML = `
+                    Escaneie o QR Code ou use a chave PIX: <strong>${pixKey}</strong><br>
+                    Valor: <strong>R$ ${amount_formatted.replace('.', ',')}</strong>
+                `;
+                qrCodeDiv.appendChild(instructions);
+                
+                qrContainer.appendChild(qrCodeDiv);
+            }
+        });
+    } else {
+        // QRCode library not loaded, show manual instructions
+        showPixInstructions(qrContainer, pixKey, amount_formatted);
+    }
+}
+
+function generatePixPayload(pixKey, merchantName, merchantCity, amount) {
+    function tlv(id, value) {
+        const len = value.length.toString().padStart(2, '0');
+        return `${id}${len}${value}`;
+    }
+    function sanitize(s, max) {
+        return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .toUpperCase().slice(0, max);
+    }
+
+    const name = sanitize(merchantName, 25);
+    const city = sanitize(merchantCity, 15);
+    const amt  = (amount && Number(amount) > 0) ? Number(amount).toFixed(2) : null;
+
+    const merchantAccountInfo = tlv('26',
+        tlv('00', 'br.gov.bcb.pix') +
+        tlv('01', pixKey)
+    );
+
+    let payload =
+        tlv('00', '01') +             // Payload Format Indicator
+        tlv('01', '11') +             // Static QR
+        merchantAccountInfo +
+        tlv('52', '0000') +           // MCC
+        tlv('53', '986') +            // BRL
+        (amt ? tlv('54', amt) : '') +
+        tlv('58', 'BR') +
+        tlv('59', name) +
+        tlv('60', city) +
+        tlv('62', tlv('05', '***'));  // txid
+
+    const toCRC = payload + '6304';
+    const crc = calculateCRC16(toCRC).toString(16).toUpperCase().padStart(4, '0');
+    return toCRC + crc;
+}
+
+function calculateCRC16(data) {
+    let crc = 0xFFFF;
+    for (let i = 0; i < data.length; i++) {
+        crc ^= data.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) {
+            if (crc & 0x8000) {
+                crc = (crc << 1) ^ 0x1021;
+            } else {
+                crc <<= 1;
+            }
+        }
+    }
+    return crc & 0xFFFF;
+}
+
+function showPixInstructions(container, pixKey, amount) {
+    const fallbackDiv = document.createElement('div');
+    fallbackDiv.className = 'qr-code-display';
+    fallbackDiv.innerHTML = `
         <div class="qr-placeholder">
             <i class="fas fa-qrcode" style="font-size: 120px; color: #8b4f7f;"></i>
             <p style="margin-top: 10px; font-size: 12px; color: #666;">
                 Use a chave PIX: <strong>${pixKey}</strong><br>
-                Valor: <strong>R$ ${amount_formatted.replace('.', ',')}</strong>
+                Valor: <strong>R$ ${amount.replace('.', ',')}</strong>
             </p>
         </div>
     `;
-    
-    qrContainer.appendChild(qrCodeDiv);
+    container.appendChild(fallbackDiv);
 }
 
 function sendPaymentProof() {
