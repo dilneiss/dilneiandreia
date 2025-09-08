@@ -939,24 +939,64 @@ window.onclick = function(event) {
 // Background Music Control
 let musicPlaying = false;
 
+// Detect if device is iOS
+function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent);
+}
+
+// Detect if device is mobile
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 // Initialize music state on page load
 document.addEventListener('DOMContentLoaded', function() {
     const musicVideo = document.getElementById('background-music');
     const musicBtn = document.getElementById('music-control-btn');
     
     if (musicVideo && musicBtn) {
-        // Check if video is playing automatically and unmute it
-        setTimeout(() => {
-            if (!musicVideo.paused) {
-                // Automatically unmute the video so users can hear the music
-                musicVideo.muted = false;
+        // For mobile devices, especially iOS, autoplay is often blocked
+        // So we need to wait for user interaction
+        if (isMobile()) {
+            // On mobile, start with play button showing
+            const icon = musicBtn.querySelector('i');
+            icon.className = 'fas fa-play';
+            musicBtn.title = 'Reproduzir música de fundo';
+            musicBtn.style.background = 'rgba(139, 79, 127, 0.6)';
+            musicPlaying = false;
+        } else {
+            // Desktop behavior - check if video is playing automatically and unmute it
+            setTimeout(() => {
+                if (!musicVideo.paused) {
+                    // Automatically unmute the video so users can hear the music
+                    musicVideo.muted = false;
+                    musicPlaying = true;
+                    const icon = musicBtn.querySelector('i');
+                    icon.className = 'fas fa-pause';
+                    musicBtn.title = 'Pausar música de fundo';
+                    musicBtn.style.background = 'rgba(139, 79, 127, 0.9)';
+                }
+            }, 500);
+        }
+        
+        // Add event listeners to handle playback state changes
+        musicVideo.addEventListener('play', function() {
+            if (!musicVideo.muted) {
                 musicPlaying = true;
                 const icon = musicBtn.querySelector('i');
                 icon.className = 'fas fa-pause';
                 musicBtn.title = 'Pausar música de fundo';
                 musicBtn.style.background = 'rgba(139, 79, 127, 0.9)';
             }
-        }, 500);
+        });
+        
+        musicVideo.addEventListener('pause', function() {
+            musicPlaying = false;
+            const icon = musicBtn.querySelector('i');
+            icon.className = 'fas fa-play';
+            musicBtn.title = 'Reproduzir música de fundo';
+            musicBtn.style.background = 'rgba(139, 79, 127, 0.6)';
+        });
     }
 });
 
@@ -971,6 +1011,15 @@ function toggleMusic() {
     if (!musicPlaying) {
         // Start playing music (unmuted)
         musicVideo.muted = false;
+        
+        // For mobile devices, especially iOS, we need to ensure proper handling
+        if (isMobile()) {
+            // Force load the video first if needed
+            if (musicVideo.readyState < 2) {
+                musicVideo.load();
+            }
+        }
+        
         musicVideo.play().then(() => {
             musicPlaying = true;
             icon.className = 'fas fa-pause';
@@ -978,6 +1027,15 @@ function toggleMusic() {
             musicBtn.style.background = 'rgba(139, 79, 127, 0.9)';
         }).catch(e => {
             console.log('Unable to play video:', e);
+            // If autoplay fails, show a message to the user (mobile-friendly)
+            if (isMobile()) {
+                // Try to play with user gesture
+                setTimeout(() => {
+                    musicVideo.play().catch(err => {
+                        console.log('Playback failed even with user gesture:', err);
+                    });
+                }, 100);
+            }
         });
     } else {
         // Pause music
