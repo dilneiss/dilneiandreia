@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Sistema de Cotas</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .quota-info { background: #f0f8ff; padding: 10px; margin: 10px 0; border-radius: 3px; }
+        .quota-details { color: #666; font-size: 14px; }
+        .quota-total { font-weight: bold; color: #d4a574; }
+        .quota-selection { margin: 15px 0; }
+        .quota-selector { margin: 10px 0; }
+        .quota-display { margin: 5px 0; font-weight: bold; }
+        .quota-calculation { margin: 10px 0; padding: 10px; background: #f9f9f9; border-radius: 3px; }
+        input[type="range"] { width: 200px; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Teste do Sistema de Cotas</h1>
+    
+    <div class="test-section">
+        <h3>ID 20 - Vale Comida Coreana</h3>
+        <div class="quota-info">Sistema de Cotas</div>
+        <div class="quota-details">3 cotas de R$ 100,00</div>
+        <div class="quota-total">Total: R$ 300,00</div>
+        
+        <div class="quota-selection">
+            <h5>Escolha a quantidade de cotas:</h5>
+            <div class="quota-selector">
+                <label for="quota20">Cotas (1 - 3):</label>
+                <input type="range" id="quota20" min="1" max="3" value="1" oninput="updateTest(20, this.value)">
+                <div class="quota-display">
+                    <span id="display20">1</span> de 3 cotas
+                </div>
+            </div>
+            <div class="quota-calculation">
+                <div class="quota-math">
+                    <span id="count20">1</span> × R$ 100,00 = 
+                    <span id="total20">R$ 100,00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h3>ID 9 - Jantar Romântico VIP</h3>
+        <div class="quota-info">Sistema de Cotas</div>
+        <div class="quota-details">4 cotas de R$ 50,00</div>
+        <div class="quota-total">Total: R$ 200,00</div>
+        
+        <div class="quota-selection">
+            <h5>Escolha a quantidade de cotas:</h5>
+            <div class="quota-selector">
+                <label for="quota9">Cotas (1 - 4):</label>
+                <input type="range" id="quota9" min="1" max="4" value="1" oninput="updateTest(9, this.value)">
+                <div class="quota-display">
+                    <span id="display9">1</span> de 4 cotas
+                </div>
+            </div>
+            <div class="quota-calculation">
+                <div class="quota-math">
+                    <span id="count9">1</span> × R$ 50,00 = 
+                    <span id="total9">R$ 50,00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h3>ID 28 - Aspirador de Pó Robô</h3>
+        <div class="quota-info">Sistema de Cotas</div>
+        <div class="quota-details">3 cotas de R$ 266,00</div>
+        <div class="quota-total">Total: R$ 800,00</div>
+        
+        <div class="quota-selection">
+            <h5>Escolha a quantidade de cotas:</h5>
+            <div class="quota-selector">
+                <label for="quota28">Cotas (1 - 3):</label>
+                <input type="range" id="quota28" min="1" max="3" value="1" oninput="updateTest(28, this.value)">
+                <div class="quota-display">
+                    <span id="display28">1</span> de 3 cotas
+                </div>
+            </div>
+            <div class="quota-calculation">
+                <div class="quota-math">
+                    <span id="count28">1</span> × R$ 266,00 = 
+                    <span id="total28">R$ 266,00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quotaData = {
+            20: { maxQuotas: 3, pricePerQuota: 100 },
+            9: { maxQuotas: 4, pricePerQuota: 50 },
+            28: { maxQuotas: 3, pricePerQuota: 266 }
+        };
+
+        function updateTest(id, quotaCount) {
+            const quota = quotaData[id];
+            const totalAmount = parseInt(quotaCount) * quota.pricePerQuota;
+            
+            document.getElementById(`display${id}`).textContent = quotaCount;
+            document.getElementById(`count${id}`).textContent = quotaCount;
+            document.getElementById(`total${id}`).textContent = `R$ ${totalAmount.toLocaleString('pt-BR')},00`;
+            
+            console.log(`ID ${id}: ${quotaCount} cotas × R$ ${quota.pricePerQuota} = R$ ${totalAmount}`);
+        }
+
+        console.log('Sistema de Cotas - Teste iniciado');
+        console.log('ID 20: 3 cotas de R$100 cada');
+        console.log('ID 9: 4 cotas de R$50 cada'); 
+        console.log('ID 28: 3 cotas de R$266 cada');
+    </script>
+</body>
+</html>

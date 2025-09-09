@@ -1231,23 +1231,25 @@ body {
 
 .selected-gift-card {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 1rem;
     background: rgba(139, 79, 127, 0.1);
-    padding: 1rem;
-    border-radius: 10px;
+    padding: 1.5rem;
+    border-radius: 12px;
     margin-bottom: 1.5rem;
 }
 
 .selected-gift-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
 }
 
 .selected-gift-img {
@@ -1930,5 +1932,343 @@ body {
         margin: 1rem auto;
         display: block;
         text-align: center;
+    }
+}
+
+/* Quota Selection Button Styles */
+.quota-selection {
+    margin-top: 1.5rem;
+}
+
+.quota-selection h5 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.quota-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+
+.quota-btn {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+    border: 2px solid #dee2e6;
+    border-radius: 16px;
+    padding: 18px 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 110px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(10px);
+}
+
+.quota-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(73, 80, 87, 0.25);
+    border-color: #6c757d;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #dee2e6 100%);
+}
+
+.quota-btn.active {
+    background: linear-gradient(135deg, #495057 0%, #6c757d 50%, #495057 100%);
+    border-color: #495057;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(73, 80, 87, 0.4);
+}
+
+.quota-btn.active::before {
+    content: '✓';
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+.quota-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #495057;
+    line-height: 1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.quota-btn.active .quota-number {
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.quota-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.quota-btn.active .quota-label {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.quota-price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-top: 2px;
+}
+
+.quota-btn.active .quota-price {
+    color: white;
+}
+
+.quota-display {
+    text-align: center;
+    margin: 1.2rem 0 1rem;
+    font-size: 1rem;
+    color: #6c757d;
+    font-weight: 600;
+    padding: 8px 16px;
+    background: rgba(108, 117, 125, 0.1);
+    border-radius: 20px;
+    border: 1px solid rgba(108, 117, 125, 0.2);
+}
+
+.quota-calculation {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-align: center;
+    border: 2px solid #dee2e6;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.quota-calculation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #6c757d, #495057, #6c757d);
+    border-radius: 12px 12px 0 0;
+}
+
+.quota-math {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#quotaTotal {
+    color: #495057;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive quota buttons */
+@media (max-width: 768px) {
+    .quota-buttons {
+        gap: 8px;
+    }
+    
+    .quota-btn {
+        min-width: 80px;
+        padding: 12px 16px;
+        flex: 1;
+        max-width: calc(50% - 4px);
+    }
+    
+    .quota-number {
+        font-size: 1.5rem;
+    }
+    
+    .quota-label {
+        font-size: 0.75rem;
+    }
+    
+    .quota-price {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .quota-btn {
+        max-width: 100%;
+        margin-bottom: 8px;
+    }
+    
+    .quota-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* Quota Information Display - Enhanced Styling */
+.gift-price-quota {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-top: 12px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.gift-price-quota:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+.gift-price-quota::before {
+    content: '📊';
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.quota-info {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #495057;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.quota-info::before {
+    content: '⚡';
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.quota-details {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    padding: 4px 8px;
+    background: rgba(108, 117, 125, 0.1);
+    border-radius: 6px;
+    border-left: 3px solid #6c757d;
+}
+
+.quota-total {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #495057;
+    text-align: center;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Quota Explanation and Feedback Styling */
+.quota-explanation {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #495057;
+    line-height: 1.4;
+    position: relative;
+}
+
+.quota-explanation::before {
+    content: 'ℹ️';
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    background: #ffffff;
+    padding: 0 4px;
+    font-size: 14px;
+}
+
+.quota-feedback {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.selected-choice {
+    background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(73, 80, 87, 0.3);
+    border: 2px solid #495057;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.selected-choice::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .quota-explanation {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .selected-choice {
+        font-size: 1.1rem;
+        padding: 14px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .selected-choice {
+        font-size: 1rem;
+        padding: 12px 16px;
     }
 }

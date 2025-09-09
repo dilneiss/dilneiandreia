@@ -106,41 +106,42 @@ function closeConfirmationModal() {
 
 // Gift List Data - 34 Creative Options with Images (Ordered by Humor Level - Funniest First!)
 const giftList = [
-    { id: 32, name: "Livro 'Como Não Matar Seu Cônjuge'", description: "Manual de sobrevivência matrimonial!", price: 160, image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400", category: "fun" },
+    { id: 4, name: "Contribuição para Lua de Mel", description: "Ajude os noivos a realizarem a viagem dos sonhos!", price: 200, image: "presentes/gift-04.png", category: "honeymoon", hasQuotas: false, quotas: { maxQuotas: 4, pricePerQuota: 50, totalPrice: 200 } },
+    { id: 13, name: "Passeio de Barco Romântico", description: "Passe especial para passeio de barco durante a lua de mel!", price: 100, image: "presentes/gift-13.jpg", category: "experience" },
+    { id: 38, name: "Hospedagem para o Casal", description: "Estadia especial para os noivos aproveitarem a lua de mel com todo conforto!", price: 900, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400", category: "honeymoon" },
+    { id: 17, name: "Passe Fura-Fila Buffet", description: "Seja sempre a primeira pessoa na fila do buffet em qualquer festa!", price: 250, image: "presentes/gift-17.jpg", category: "food" },
+    { id: 9, name: "Jantar Romântico VIP", description: "Uma noite especial em restaurante requintado para o casal!", price: 250, image: "presentes/gift-09.jpg", category: "experience", hasQuotas: false, quotas: { maxQuotas: 5, pricePerQuota: 50, totalPrice: 250 } },
+    { id: 15, name: "Lingerie Lua de Mel", description: "Roupa íntima especial para a noiva arrasar na lua de mel!", price: 100, image: "presentes/gift-15.jpg", category: "intimate" },
+    { id: 19, name: "Sushi Especial para Dois", description: "Experiência gastronômica japonesa premium para o casal!", price: 400, image: "presentes/gift-19.jpg", category: "food", hasQuotas: false, quotas: { maxQuotas: 4, pricePerQuota: 100, totalPrice: 400 } },
+    { id: 39, name: "Passagens Aéreas para Lua de Mel", description: "Voem juntos para o destino dos sonhos na lua de mel perfeita!", price: 1200, image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400", category: "honeymoon" },
     { id: 6, name: "Kit Anti-Stress Casamento", description: "Calmante especial para sobreviver ao dia do casamento sem surtir!", price: 80, image: "presentes/gift-06.webp", category: "wellness" },
-    { id: 29, name: "Kit de Vinhos para Discussões", description: "Quando a conversa esquenta, o vinho esfria!", price: 80, image: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=400", category: "drink" },
+    { id: 37, name: "Sessão de Massagem para o Casal", description: "Relaxamento após as brigas por bobagem!", price: 200, image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400", category: "experience" },
+    { id: 24, name: "Curso de Culinária para Ele", description: "Para que ela não cozinhe sempre sozinha!", price: 200, image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400", category: "experience" },
+    { id: 40, name: "Garrafa de Vinho", description: "Vinho selecionado para brindar os momentos especiais do casal!", price: 200, image: "presentes/tacavinho.jpg", category: "drink" },
+    { id: 30, name: "Conta de Delivery por 1 Mês", description: "Para quando nenhum dos dois quer cozinhar!", price: 180, image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400", category: "food" },
+    { id: 28, name: "Aspirador de Pó Robô", description: "Para acabar com as discussões sobre limpeza!", price: 800, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", category: "home", hasQuotas: false, quotas: { maxQuotas: 8, pricePerQuota: 100, totalPrice: 800 } },
+    { id: 35, name: "Cafeteira Expresso", description: "Café forte para aguentar os primeiros anos!", price: 350, image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400", category: "home" },
+    { id: 22, name: "Alexa para a Mulher não Gritar só com o Marido", description: "Echo Dot para comandos de voz em casa!", price: 350, image: "https://images.unsplash.com/photo-1543512214-318c7553f230?w=400", category: "tech" },
+    { id: 2, name: "Ajuda com 14 Meses de Aluguel", description: "Uma super contribuição para ajudar com as contas da casa nova!", price: 1200, image: "presentes/gift-02.jpg", category: "home", hasQuotas: false, quotas: { maxQuotas: 12, pricePerQuota: 100, totalPrice: 1200 } },
+    { id: 26, name: "Kit de Ferramentas Básicas", description: "Porque YouTube não ensina tudo!", price: 150, image: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400", category: "home" },
+    { id: 33, name: "Kit de Plantas para Casa", description: "Para ter algo vivo além do relacionamento!", price: 50, image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400", category: "home" },
+    { id: 3, name: "Socorro Financeiro da Noiva", description: "Ajuda emergencial com a fatura do cartão para a futura esposa!", price: 500, image: "presentes/gift-03.png", category: "financial" },
     { id: 11, name: "Proteção Anti-Buquê", description: "Para a noiva não jogar o buquê na sua namorada e estragar tudo!", price: 350, image: "presentes/gift-11.png", category: "fun" },
     { id: 12, name: "Manta da Razão Eterna", description: "Para o noivo estar sempre coberto de razão nas discussões!", price: 200, image: "presentes/gift-12.jpg", category: "relationship" },
-    { id: 18, name: "Presente Simbólico", description: "Só para não dizer que não deu nada - mas com muito carinho!", price: 150, image: "presentes/gift-18.png", category: "symbolic" },
-    { id: 37, name: "Sessão de Massagem para o Casal", description: "Relaxamento após as brigas por bobagem!", price: 200, image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400", category: "experience" },
-    { id: 28, name: "Aspirador de Pó Robô", description: "Para acabar com as discussões sobre limpeza!", price: 800, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", category: "home" },
-    { id: 36, name: "Kit de Jogos de Tabuleiro", description: "Para descobrir quem é mais competitivo!", price: 100, image: "https://images.unsplash.com/photo-1611891487122-207579d67d98?w=400", category: "entertainment" },
-    { id: 27, name: "Sessão de Terapia de Casal", description: "Investimento preventivo no relacionamento!", price: 100, image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400", category: "relationship" },
-    { id: 33, name: "Kit de Plantas para Apartamento", description: "Para ter algo vivo além do relacionamento!", price: 50, image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400", category: "home" },
-    { id: 14, name: "Prioridade VIP no Buquê", description: "Seja a primeira da fila para pegar o buquê da noiva!", price: 150, image: "presentes/gift-14.png", category: "fun" },
-    { id: 25, name: "Netflix Premium por 1 Ano", description: "Para as brigas sobre o que assistir!", price: 180, image: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400", category: "entertainment" },
+    { id: 18, name: "Presente Simbólico", description: "Só para não dizer que não deu nada - mas com muito carinho!", price: 100, image: "presentes/gift-18.png", category: "symbolic" },
+    { id: 14, name: "Prioridade VIP no Buffet", description: "Seja a primeira da fila para pegar Buffet!", price: 150, image: "presentes/gift-14.png", category: "fun" },
     { id: 5, name: "Pacote Amizade Eterna", description: "Seja oficialmente nosso amigo para sempre com direitos e privilégios especiais!", price: 300, image: "presentes/gift-05.jpg", category: "friendship" },
-    { id: 3, name: "Socorro Financeiro da Noiva", description: "Ajuda emergencial com a fatura do cartão para a futura esposa!", price: 500, image: "presentes/gift-03.png", category: "financial" },
-    { id: 16, name: "Status Parente Preferido", description: "Grande oportunidade de se tornar nosso parente favorito oficial!", price: 500, image: "presentes/gift-16.jpg", category: "family" },
+    { id: 16, name: "Status Parente Preferido", description: "Grande oportunidade de se tornar nosso parente favorito oficial!", price: 450, image: "presentes/gift-16.jpg", category: "family" },
+    { id: 7, name: "Benção Divina Especial", description: "Quando Deus toca sua alma e você resolve presentear os noivos!", price: 600, image: "presentes/gift-07.jpg", category: "spiritual" },
+    { id: 36, name: "Kit de Jogos de Tabuleiro", description: "Para descobrir quem é mais competitivo!", price: 100, image: "https://images.unsplash.com/photo-1611891487122-207579d67d98?w=400", category: "entertainment" },
+    { id: 25, name: "Netflix Premium por 1 Ano", description: "Para as brigas sobre o que assistir!", price: 180, image: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400", category: "entertainment" },
     { id: 31, name: "Fones de Ouvido Bluetooth", description: "Para ouvir música e fingir que não escuta reclamação!", price: 100, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400", category: "tech" },
-    { id: 26, name: "Kit de Ferramentas Básicas", description: "Porque YouTube não ensina tudo!", price: 150, image: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400", category: "home" },
-    { id: 22, name: "Alexa para a Mulher não Gritar só com o Marido", description: "Echo Dot para comandos de voz em casa!", price: 350, image: "https://images.unsplash.com/photo-1543512214-318c7553f230?w=400", category: "tech" },
-    { id: 30, name: "Conta de Delivery por 1 Mês", description: "Para quando nenhum dos dois quer cozinhar!", price: 150, image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400", category: "food" },
-    { id: 35, name: "Cafeteira Expresso", description: "Café forte para aguentar os primeiros anos!", price: 350, image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400", category: "home" },
-    { id: 17, name: "Passe Fura-Fila Buffet", description: "Seja sempre a primeira pessoa na fila do buffet em qualquer festa!", price: 250, image: "presentes/gift-17.jpg", category: "food" },
-    { id: 15, name: "Lingerie Lua de Mel", description: "Roupa íntima especial para a noiva arrasar na lua de mel!", price: 300, image: "presentes/gift-15.jpg", category: "intimate" },
-    { id: 24, name: "Curso de Culinária para Ele", description: "Para que ela não cozinhe sempre sozinha!", price: 200, image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400", category: "experience" },
-    { id: 13, name: "Passeio de Barco Romântico", description: "Passe especial para passeio de barco durante a lua de mel!", price: 100, image: "presentes/gift-13.jpg", category: "experience" },
-    { id: 8, name: "Garrafa de Vinho Premium", description: "Vinho especial para o casal celebrar os momentos especiais!", price: 150, image: "presentes/gift-08.jpg", category: "drink" },
-    { id: 4, name: "Contribuição para Lua de Mel", description: "Ajude os noivos a realizarem a viagem dos sonhos!", price: 200, image: "presentes/gift-04.png", category: "honeymoon" },
-    { id: 21, name: "Ajuda na Lua de Mel", description: "Contribua para nossa viagem dos sonhos!", price: 100, image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400", category: "honeymoon" },
-    { id: 9, name: "Jantar Romântico VIP", description: "Uma noite especial em restaurante requintado para o casal!", price: 200, image: "presentes/gift-09.jpg", category: "experience" },
     { id: 1, name: "Corte de Cabelo VIP para o Noivo", description: "Um ano inteiro de visual renovado para o marido ficar sempre elegante!", price: 350, image: "presentes/gift-01.png", category: "grooming" },
-    { id: 19, name: "Sushi Especial para Dois", description: "Experiência gastronômica japonesa premium para o casal!", price: 400, image: "presentes/gift-19.jpg", category: "food" },
-    { id: 2, name: "Ajuda com 14 Meses de Aluguel", description: "Uma super contribuição para ajudar com as contas da casa nova!", price: 1200, image: "presentes/gift-02.jpg", category: "home" },
-    { id: 7, name: "Benção Divina Especial", description: "Quando Deus toca sua alma e você resolve presentear os noivos!", price: 2000, image: "presentes/gift-07.jpg", category: "spiritual" },
-    { id: 20, name: "Vale Comida Coreana", description: "Para o noivo levar a noiva para conhecer a culinária coreana!", price: 300, image: "presentes/gift-20.jpg", category: "food" },
+    { id: 20, name: "Vale Comida Coreana", description: "Para o noivo levar a noiva para conhecer a culinária coreana!", price: 150, image: "presentes/gift-20.jpg", category: "food", hasQuotas: false, quotas: { maxQuotas: 3, pricePerQuota: 100, totalPrice: 300 } },
+    { id: 27, name: "Sessão de Terapia de Casal", description: "Investimento preventivo no relacionamento!", price: 200, image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400", category: "relationship" },
+    { id: 21, name: "Ajuda na Lua de Mel", description: "Contribua para nossa viagem dos sonhos!", price: 300, image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400", category: "honeymoon" }
 ];
+
 
 let selectedGift = null;
 
@@ -164,13 +165,28 @@ function populateGiftGrid() {
         giftCard.className = 'gift-card';
         giftCard.onclick = () => selectGift(gift);
         
+        let priceDisplay;
+        if (gift.hasQuotas) {
+            priceDisplay = `
+                <div class="gift-price-quota">
+                    <div class="quota-info">Escolha o valor do presente</div>
+                    <div class="quota-details">
+                        ${gift.quotas.maxQuotas} ${gift.quotas.maxQuotas > 1 ? 'cotas' : 'cota'} (R$ ${gift.quotas.pricePerQuota.toLocaleString('pt-BR')},00 cada)
+                    </div>
+                    <div class="quota-total">Total: R$ ${gift.quotas.totalPrice.toLocaleString('pt-BR')},00</div>
+                </div>
+            `;
+        } else {
+            priceDisplay = `<div class="gift-price">R$ ${gift.price.toLocaleString('pt-BR')},00</div>`;
+        }
+        
         giftCard.innerHTML = `
             <div class="gift-image">
                 <img src="${gift.image}" alt="${gift.name}" class="gift-img">
             </div>
             <h4 class="gift-name">${gift.name}</h4>
             <p class="gift-description">${gift.description}</p>
-            <div class="gift-price">R$ ${gift.price.toLocaleString('pt-BR')},00</div>
+            ${priceDisplay}
             <button class="select-gift-btn">
                 <i class="fas fa-gift"></i>
                 Presentear
@@ -191,24 +207,62 @@ function showGiftPaymentModal() {
     
     // Update selected gift info
     const selectedGiftInfo = document.getElementById('selectedGiftInfo');
-    selectedGiftInfo.innerHTML = `
-        <div class="selected-gift-card">
-            <div class="selected-gift-image">
-                <img src="${selectedGift.image}" alt="${selectedGift.name}" class="selected-gift-img">
-            </div>
-            <div class="selected-gift-details">
-                <h4>${selectedGift.name}</h4>
-                <p>${selectedGift.description}</p>
-                <div class="selected-gift-price">R$ ${selectedGift.price.toLocaleString('pt-BR')},00</div>
-            </div>
-        </div>
-    `;
     
-    // Update gift amount
-    document.getElementById('giftAmount').textContent = `R$ ${selectedGift.price.toLocaleString('pt-BR')},00`;
+    let giftDetailsHTML;
+    if (selectedGift.hasQuotas) {
+        giftDetailsHTML = `
+            <div class="selected-gift-card">
+                <div class="selected-gift-image">
+                    <img src="${selectedGift.image}" alt="${selectedGift.name}" class="selected-gift-img">
+                </div>
+                <div class="selected-gift-details">
+                    <h4>${selectedGift.name}</h4>
+                    <p>${selectedGift.description}</p>
+                    <div class="quota-selection">
+                        <div class="quota-explanation">
+                            <p>Você pode escolher contribuir com 1 ou mais partes deste presente. O valor total do presente será formado pelas cotas dos convidados.</p>
+                        </div>
+                        <h5>Quanto você gostaria de contribuir?</h5>
+                        <div class="quota-buttons">
+                            ${Array.from({length: selectedGift.quotas.maxQuotas}, (_, i) => {
+                                const quotaNum = i + 1;
+                                const isActive = quotaNum === 1 ? 'active' : '';
+                                return `<button class="quota-btn ${isActive}" data-quota="${quotaNum}" onclick="selectQuota(${quotaNum})">
+                                    <span class="quota-number">${quotaNum}</span>
+                                    <span class="quota-price">R$ ${(quotaNum * selectedGift.quotas.pricePerQuota).toLocaleString('pt-BR')},00</span>
+                                </button>`;
+                            }).join('')}
+                        </div>
+                        <div class="quota-feedback">
+                            <div class="selected-choice">
+                                Você escolheu <span id="quotaTotal">R$ ${selectedGift.quotas.pricePerQuota.toLocaleString('pt-BR')},00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        giftDetailsHTML = `
+            <div class="selected-gift-card">
+                <div class="selected-gift-image">
+                    <img src="${selectedGift.image}" alt="${selectedGift.name}" class="selected-gift-img">
+                </div>
+                <div class="selected-gift-details">
+                    <h4>${selectedGift.name}</h4>
+                    <p>${selectedGift.description}</p>
+                    <div class="selected-gift-price">R$ ${selectedGift.price.toLocaleString('pt-BR')},00</div>
+                </div>
+            </div>
+        `;
+    }
     
-    // Generate QR Code
-    generatePixQRCode(selectedGift.price);
+    selectedGiftInfo.innerHTML = giftDetailsHTML;
+    
+    // Update gift amount and generate QR Code
+    const initialAmount = selectedGift.hasQuotas ? selectedGift.quotas.pricePerQuota : selectedGift.price;
+    document.getElementById('giftAmount').textContent = `R$ ${initialAmount.toLocaleString('pt-BR')},00`;
+    generatePixQRCode(initialAmount);
     
     // Show payment modal
     closeGiftsModal();
@@ -216,6 +270,32 @@ function showGiftPaymentModal() {
     if (paymentModal) {
         paymentModal.style.display = 'block';
     }
+}
+
+function selectQuota(quotaCount) {
+    if (!selectedGift || !selectedGift.hasQuotas) return;
+    
+    // Update button states
+    const allButtons = document.querySelectorAll('.quota-btn');
+    allButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (parseInt(btn.dataset.quota) === quotaCount) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Calculate total amount
+    const totalAmount = quotaCount * selectedGift.quotas.pricePerQuota;
+    
+    // Update UI elements
+    const quotaTotal = document.getElementById('quotaTotal');
+    const giftAmount = document.getElementById('giftAmount');
+    
+    if (quotaTotal) quotaTotal.textContent = `R$ ${totalAmount.toLocaleString('pt-BR')},00`;
+    if (giftAmount) giftAmount.textContent = `R$ ${totalAmount.toLocaleString('pt-BR')},00`;
+    
+    // Regenerate QR Code with new amount
+    generatePixQRCode(totalAmount);
 }
 
 function generatePixQRCode(amount) {
