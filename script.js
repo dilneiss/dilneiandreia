@@ -104,28 +104,28 @@ function closeConfirmationModal() {
     }
 }
 
-// Gift List Data - 20 Creative Options
+// Gift List Data - 20 Creative Options with Images
 const giftList = [
-    { id: 1, name: "Ajuda na Lua de Mel", description: "Contribua para nossa viagem dos sonhos!", price: 100, icon: "fa-plane", category: "honeymoon" },
-    { id: 2, name: "Alexa para a Mulher não Gritar só com o Marido", description: "Echo Dot para comandos de voz em casa!", price: 350, icon: "fa-microphone", category: "tech" },
-    { id: 3, name: "Kit Sobrevivência para Recém-Casados", description: "Pizza congelada, energético e paciência!", price: 80, icon: "fa-first-aid", category: "fun" },
-    { id: 4, name: "Curso de Culinária para Ele", description: "Para que ela não cozinhe sempre sozinha!", price: 200, icon: "fa-utensils", category: "experience" },
-    { id: 5, name: "Netflix Premium por 1 Ano", description: "Para as brigas sobre o que assistir!", price: 180, icon: "fa-tv", category: "entertainment" },
-    { id: 6, name: "Kit de Ferramentas Básicas", description: "Porque YouTube não ensina tudo!", price: 150, icon: "fa-hammer", category: "home" },
-    { id: 7, name: "Sessão de Terapia de Casal", description: "Investimento preventivo no relacionamento!", price: 300, icon: "fa-heart", category: "relationship" },
-    { id: 8, name: "Aspirador de Pó Robô", description: "Para acabar com as discussões sobre limpeza!", price: 800, icon: "fa-robot", category: "home" },
-    { id: 9, name: "Kit de Vinhos para Discussões", description: "Quando a conversa esquenta, o vinho esfria!", price: 120, icon: "fa-wine-glass", category: "drink" },
-    { id: 10, name: "Conta de Delivery por 1 Mês", description: "Para quando nenhum dos dois quer cozinhar!", price: 250, icon: "fa-motorcycle", category: "food" },
-    { id: 11, name: "Fones de Ouvido Bluetooth", description: "Para ouvir música e fingir que não escuta reclamação!", price: 200, icon: "fa-headphones", category: "tech" },
-    { id: 12, name: "Livro 'Como Não Matar Seu Cônjuge'", description: "Manual de sobrevivência matrimonial!", price: 40, icon: "fa-book", category: "fun" },
-    { id: 13, name: "Kit de Plantas para Apartamento", description: "Para ter algo vivo além do relacionamento!", price: 90, icon: "fa-leaf", category: "home" },
-    { id: 14, name: "Assinatura de Streaming de Filmes", description: "Para as noites de 'você escolhe', 'não, você escolhe'!", price: 60, icon: "fa-film", category: "entertainment" },
-    { id: 15, name: "Cafeteira Expresso", description: "Café forte para aguentar os primeiros anos!", price: 450, icon: "fa-coffee", category: "home" },
-    { id: 16, name: "Kit de Jogos de Tabuleiro", description: "Para descobrir quem é mais competitivo!", price: 180, icon: "fa-dice", category: "entertainment" },
-    { id: 17, name: "Sessão de Massagem para o Casal", description: "Relaxamento após as brigas por bobagem!", price: 280, icon: "fa-spa", category: "experience" },
-    { id: 18, name: "Air Fryer", description: "Para frituras sem culpa e brigas por comida!", price: 300, icon: "fa-fire", category: "home" },
-    { id: 19, name: "Kit de Sobremesas Gourmet", description: "Açúcar para adoçar os momentos amargos!", price: 70, icon: "fa-birthday-cake", category: "food" },
-    { id: 20, name: "Voucher para Jantar Romântico", description: "Para lembrar por que se casaram!", price: 200, icon: "fa-heart", category: "experience" }
+    { id: 1, name: "Corte de Cabelo VIP para o Noivo", description: "Um ano inteiro de visual renovado para o marido ficar sempre elegante!", price: 800, image: "presentes/gift-01.png", category: "grooming" },
+    { id: 2, name: "Ajuda com 14 Meses de Aluguel", description: "Uma super contribuição para ajudar com as contas da casa nova!", price: 2000, image: "presentes/gift-02.jpg", category: "home" },
+    { id: 3, name: "Socorro Financeiro da Noiva", description: "Ajuda emergencial com a fatura do cartão para a futura esposa!", price: 500, image: "presentes/gift-03.png", category: "financial" },
+    { id: 4, name: "Contribuição para Lua de Mel", description: "Ajude os noivos a realizarem a viagem dos sonhos!", price: 1200, image: "presentes/gift-04.png", category: "honeymoon" },
+    { id: 5, name: "Pacote Amizade Eterna", description: "Seja oficialmente nosso amigo para sempre com direitos e privilégios especiais!", price: 300, image: "presentes/gift-05.jpg", category: "friendship" },
+    { id: 6, name: "Kit Anti-Stress Casamento", description: "Calmante especial para sobreviver ao dia do casamento sem surtir!", price: 150, image: "presentes/gift-06.webp", category: "wellness" },
+    { id: 7, name: "Benção Divina Especial", description: "Quando Deus toca sua alma e você resolve presentear os noivos!", price: 400, image: "presentes/gift-07.jpg", category: "spiritual" },
+    { id: 8, name: "Garrafa de Vinho Premium", description: "Vinho especial para o casal celebrar os momentos especiais!", price: 250, image: "presentes/gift-08.jpg", category: "drink" },
+    { id: 9, name: "Jantar Romântico VIP", description: "Uma noite especial em restaurante requintado para o casal!", price: 600, image: "presentes/gift-09.jpg", category: "experience" },
+    { id: 10, name: "Netflix Premium Anual", description: "Um ano inteiro de entretenimento para as noites de casal!", price: 180, image: "presentes/gift-10.jpg", category: "entertainment" },
+    { id: 11, name: "Proteção Anti-Buquê", description: "Para a noiva não jogar o buquê na sua namorada e estragar tudo!", price: 350, image: "presentes/gift-11.png", category: "fun" },
+    { id: 12, name: "Manta da Razão Eterna", description: "Para o noivo estar sempre coberto de razão nas discussões!", price: 200, image: "presentes/gift-12.jpg", category: "relationship" },
+    { id: 13, name: "Passeio de Barco Romântico", description: "Passe especial para passeio de barco durante a lua de mel!", price: 800, image: "presentes/gift-13.jpg", category: "experience" },
+    { id: 14, name: "Prioridade VIP no Buquê", description: "Seja a primeira da fila para pegar o buquê da noiva!", price: 150, image: "presentes/gift-14.png", category: "fun" },
+    { id: 15, name: "Lingerie Lua de Mel", description: "Roupa íntima especial para a noiva arrasar na lua de mel!", price: 300, image: "presentes/gift-15.jpg", category: "intimate" },
+    { id: 16, name: "Status Parente Preferido", description: "Grande oportunidade de se tornar nosso parente favorito oficial!", price: 500, image: "presentes/gift-16.jpg", category: "family" },
+    { id: 17, name: "Passe Fura-Fila Buffet", description: "Seja sempre a primeira pessoa na fila do buffet em qualquer festa!", price: 250, image: "presentes/gift-17.jpg", category: "food" },
+    { id: 18, name: "Presente Simbólico", description: "Só para não dizer que não deu nada - mas com muito carinho!", price: 150, image: "presentes/gift-18.png", category: "symbolic" },
+    { id: 19, name: "Sushi Especial para Dois", description: "Experiência gastronômica japonesa premium para o casal!", price: 400, image: "presentes/gift-19.jpg", category: "food" },
+    { id: 20, name: "Vale Comida Coreana", description: "Para o noivo levar a noiva para conhecer a culinária coreana!", price: 300, image: "presentes/gift-20.jpg", category: "food" }
 ];
 
 let selectedGift = null;
@@ -151,8 +151,8 @@ function populateGiftGrid() {
         giftCard.onclick = () => selectGift(gift);
         
         giftCard.innerHTML = `
-            <div class="gift-icon">
-                <i class="fas ${gift.icon}"></i>
+            <div class="gift-image">
+                <img src="${gift.image}" alt="${gift.name}" class="gift-img">
             </div>
             <h4 class="gift-name">${gift.name}</h4>
             <p class="gift-description">${gift.description}</p>
@@ -179,8 +179,8 @@ function showGiftPaymentModal() {
     const selectedGiftInfo = document.getElementById('selectedGiftInfo');
     selectedGiftInfo.innerHTML = `
         <div class="selected-gift-card">
-            <div class="selected-gift-icon">
-                <i class="fas ${selectedGift.icon}"></i>
+            <div class="selected-gift-image">
+                <img src="${selectedGift.image}" alt="${selectedGift.name}" class="selected-gift-img">
             </div>
             <div class="selected-gift-details">
                 <h4>${selectedGift.name}</h4>
